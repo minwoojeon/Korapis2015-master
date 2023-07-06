@@ -1,0 +1,50 @@
+/* CSS Document */
+
+body { font:12px/18px '�뗭�','Helvetica','ARIAL';margin:0; }
+
+a, a:active, a:visited { color:inherit; text-decoration:none; }
+a:hover { color:inherit; text-decoration:underline; }
+
+
+.bg_gradient { 
+background: #505050;
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzUwNTA1MCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM0MjQyNDIiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+background: -moz-linear-gradient(top,  #505050 0%, #424242 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#505050), color-stop(100%,#424242));
+background: -webkit-linear-gradient(top,  #505050 0%,#424242 100%);
+background: -o-linear-gradient(top,  #505050 0%,#424242 100%);
+background: -ms-linear-gradient(top,  #505050 0%,#424242 100%);
+background: linear-gradient(to bottom,  #505050 0%,#424242 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#505050', endColorstr='#424242',GradientType=0 ); }
+
+div#leftmenu_title { position:relative;padding:12px 15px;font-size:16px;font-weight:bold;color:#78D8EC;text-shadow:1px 1px 2px #000;background:#242424; }
+#leftmenu_title a.btn_hide { position:absolute;top:0;right:0;width:18px;height:41px;border:1px solid #242424;border-top:1px solid #737373; }
+#leftmenu_title a.btn_hide span { display:block;width:100%;height:100%;background:url('/_mgr/image/btn_leftmenu_inout.png') 0 0 no-repeat; }
+
+ul.main { position:relative;list-style:none;padding:0;margin:0;border:1px solid #242424;border-bottom:0;box-shadow:0 0 10px rgba(0,0,0,.5)  }
+ul.main > li { display:block;border-top:1px solid #737373;}
+ul.main > li > a { display:block;border-bottom:1px solid #242424;padding:5px 5px 5px 15px;color:#e8e8e8;/*font-weight:bold;*/text-decoration:none;/*text-shadow:1px 1px 1px #000;*/}
+
+ul.sub1 { position:relative;list-style:none;padding:0;margin:0; }
+ul.sub1 > li { display:block;background:#2f2f2f;border-bottom:1px solid #242424; }
+ul.sub1 > li > a { display:block;padding:4px 4px 4px 20px;color:#a3a3a3; }
+ul.sub1 > li.selected > a, ul.sub1 > li:hover > a { color:#fff; }
+ul.sub1 > li.selected > a { border-left:5px solid #59cbe3;padding-left:15px;margin-right:-1px;background:url('/_mgr/image/bullet_indi.png') center right no-repeat; }
+
+ul.sub2 { display:none;position:relative;padding-left:15px;color:#e8e8e8;margin-left:20px; }
+
+div.topmenu_wrap { position:relative;width:100%;height:100%;padding:0;margin:0;background:#4c4c4c url('/_mgr/image/bg_leftmenu.png'); }
+div.logo_container { float:left;width:280px;height:100%;border-left:1px solid #242424; }
+div.logo { width:279px;height:50px; }
+div.logo a { display:block;width:250px;height:18px;color:#fff;font-size:14px;font-family: '�뗭�', 'dotum', 'Helvetica', 'ARIAL';text-shadow:0px -1px 0px #000, 0px 1px 0px #555555; font-weight:bold; padding:16px 15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;  }
+div.logo a:hover { text-decoration:none; }
+div.btn_container { float:left;width:120px;padding-top:4px; }
+div.btn { height:22px; }
+div.btn a { display:block;padding:2px 2px 1px 2px;text-align:left;color:#C7C7C7;font-size:11px; }
+div.btn img { margin-right:6px;border:0; }
+
+div.topmenu_gnb { position:relative;margin-left:372px;height:50px; }
+div.topmenu_gnb ul { float:right;list-style:none;height:50px;margin:0;padding:0; }
+div.topmenu_gnb ul li { display:block;float:left;height:100%;border-left:1px solid #737373;border-right:1px solid #242424; }
+div.topmenu_gnb ul li a { display:block;min-width:60px;text-align:center;height:18px;font-size:14px;padding:12px 15px 16px 15px;border-top:4px solid transparent;color:#fff;font-weight:bold;text-shadow:1px 1px 1px #000; }
+div.topmenu_gnb ul li:hover a, div.topmenu_gnb ul li.selected a { border-top-color:#59cbe3;text-decoration:none; }

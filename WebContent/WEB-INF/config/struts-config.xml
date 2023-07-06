@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+
+    <form-beans>    
+    	<!-- 파일 업/다운로드를 위한 form-bean 등록
+     	<form-bean 
+     		type="com.micehub.frame.AttachFileForm" 
+     		name="attachFileForm" />
+     	<form-bean 
+     		type="com.micehub.frame.ExcelFileForm" 
+     		name="excelFileForm" /> 
+     	<form-bean 
+     		type="com.micehub.frame.CommonFileForm" 
+     		name="commonFileForm" /> 
+     	<form-bean 
+     		type="com.micehub.master.csr.BoardFileForm" 
+     		name="boardFileForm" />  -->
+    </form-beans>
+
+    <global-exceptions>
+    </global-exceptions>
+
+
+    <global-forwards>
+        <forward name="scriptTop" 		path="/_mgr/jsp/scriptTop.jsp"/>
+        <forward name="scriptGlobal" 	path="/_mgr/jsp/script_global.jsp"/>
+        <forward name="blank" 			path="/_mgr/jsp/blank.jsp"/>    
+        <forward name="errorPage" 		path="/_mgr/jsp/errorPage.jsp"/>
+	</global-forwards>
+
+
+		
+	<action-mappings>
+	
+	
+	
+		<action
+			path="/loginmember"
+			type="kr.or.korapis.home.HomeLoginAction"
+			validate="false">
+			<forward name="loginPage" 	path="/jsp/sub7-1.jsp" />
+			<forward name="success" 	path="/" />		
+			<forward name="fail" 		path="/jsp/sub7-1.jsp"/>
+			<forward name="script" 		path="/jsp/script.jsp"/>
+		</action>
+	
+	
+	
+			
+	</action-mappings>
+
+
+	<!-- <message-resources parameter="com.micehub.util.message.Common" /> -->
+		
+
+
+
+</struts-config>
+

@@ -1,0 +1,408 @@
+body {line-height: 1.6; -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;}
+img {max-width:100%}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+table caption {display:none;}
+
+.xscrollArea {overflow-x:scroll;}
+
+/*partner*/
+#partner{position:fixed;position: fixed; top: 65px; right: 0;}
+
+@media print{
+	#partner { display:none; }
+
+}
+
+/*sub_contents*/
+#sub_wrap {max-width:1200px; width:100%; min-height:70px; margin:0 auto; padding-top:5.33rem; }
+#sub_wrap:after {content: ""; display: block; clear: both}
+
+/*left_menu*/
+#left_menu{width:240px; float:left;}
+#left_menu h2 {color: #000; font-size: 2.1rem; margin-bottom:2rem}
+#left_menu .form {border-top:1px solid #2f2f2f; border-bottom:1px solid #2f2f2f;}
+#left_menu .form li{border-bottom:1px solid #d1d1d1;}
+#left_menu .form li a {display:block; overflow:hidden; position:relative; height:3.4rem; line-height:3.4rem; padding-left:1.66rem; text-decoration:none; font-size:1.2rem; font-weight:600; }
+#left_menu .form li.selected a {background:url(http://www.korapis.or.kr/images/lnb_on.png) right center no-repeat #553834; color:#ffe432;}
+.new_badge {display:inline-block; width:20px; height:20px; margin-left:0.5rem; background:url(/images/ico/new_icon.png) center center no-repeat; vertical-align:middle;}
+
+#sub_contents {width:900px; float:right; padding-bottom:6.6rem;}
+
+.sub_visual img {width:100%}
+.sub_top_box {position:relative; border-bottom:2px solid #2f2f2f;}
+.sub_top_box .page_title {font-size:2.66rem; line-height:1.6; font-weight:bold;}
+.sub_top_box .location {position:absolute; bottom:1.66rem; right:0;}
+
+.sub_body_box {min-height:450px; padding-top:1rem; font-size:1.065rem; color:#5c5c5c; transform: skew(0.1deg);}
+
+.sub_body_box ul.dashList, .sub_body_box ul.noneList, .sub_body_box ul.dotList {padding-left:0;}
+.sub_body_box .text{padding-top:20px;text-align: justify;}
+.sub_body_box .title{background:url(http://www.korapis.or.kr/images/sub_icon.gif) no-repeat 0 0; padding-left:25px; font-size:18px; font-weight:600; color:#363636;}
+.sub_body_box .text_2{padding:10px 0 20px 20px; width:660px; text-align: justify;}
+.sub_body_box .text_2 span{color:#5674b9;}
+.sub_body_box .tab{width: 680px;padding: 20px 0 0 15px;border-bottom: 1px solid #f28135;margin:15px 0 25px 6px; font-size:0}
+.sub_body_box .tab a img{margin-bottom:-1px}
+.sub_body_box .history{width:660px; margin-left:20px; border-top:1px solid #D5D3D1; border-bottom:1px solid #D5D3D1;}
+.sub_body_box .history caption{display:none;}
+.sub_body_box .history th{text-align:left; padding-left:20px; background-color:#F5F4F1; height:30px;}
+.sub_body_box .history td{text-align:left; padding-left:10px; background-color:#FFF; height:30px;}
+
+.g_1 { background:url(http://www.korapis.or.kr/images/1-3_bg01.gif) no-repeat 0 0; width:160px; height:110px; margin-left:-40px; padding:7px 0 0 0; text-align:center; color:#FFF; font-weight:bold;}
+.g_2 { background:url(http://www.korapis.or.kr/images/1-3_bg01.gif) no-repeat 0 0; width:200px; height:110px; margin-left:-40px; padding:7px 0 0 8px; text-align:left; color:#FFF; font-weight:bold;}
+.g_3 { background:url(http://www.korapis.or.kr/images/1-3_bg02.gif) no-repeat 0 0; width:160px; height:34px; margin-left:-40px; padding:7px 0 0 0; text-align:center; color:#FFF; font-weight:bold;}
+.g_4 { background:url(http://www.korapis.or.kr/images/1-3_bg03.gif) no-repeat 0 0; width:160px; height:34px; margin-left:-40px; margin-top:50px; padding:7px 0 0 0; text-align:center; color:#FFF; font-weight:bold;}
+.g_5 { background:url(http://www.korapis.or.kr/images/1-3_bg04.gif) no-repeat 0 0; width:160px; height:80px; margin-left:-40px; margin-top:50px; padding:7px 0 0 0; text-align:center; color:#FFF; font-weight:bold;}
+.g_6 { background:url(http://www.korapis.or.kr/images/1-3_bg05.gif) no-repeat 0 0; width:160px; height:80px; margin-left:-40px; margin-top:50px; padding:7px 0 0 0; text-align:center; color:#FFF; font-weight:bold;}
+.g_7 { background:url(http://www.korapis.or.kr/images/1-3_bg06.gif) no-repeat 0 0; width:160px; height:34px; margin-left:-40px; padding:7px 0 0 0; text-align:center; color:#FFF; font-weight:bold;}
+.g_8 { background:url(http://www.korapis.or.kr/images/1-3_bg06_1.gif) no-repeat 0 0; width:75px; height:60px; margin-left:-40px; margin-top:25px; padding:7px 0 0 0; text-align:center; color:#FFF; font-weight:bold; float:left;}
+.g_8_1 { background:url(http://www.korapis.or.kr/images/1-3_bg06_1.gif) no-repeat 0 0; width:75px; height:60px; margin-left:10px; margin-top:25px; padding:7px 0 0 0; text-align:center; color:#FFF; font-weight:bold; float:left;}
+.sub_body_box .group_table{width:660px; margin-left:20px; margin-top:20px;}
+.sub_body_box .group_table caption{display:none;}
+.sub_body_box .group_table th{text-align:left; text-align:center; background-color:#F5F4F1; height:30px;}
+.sub_body_box .group_table td{text-align:left; text-align:center; background-color:#FFF; height:30px;}
+.sub_body_box .text_2 .tt{color: #82AD00;  font-weight: bold;  font-size: 14px;  line-height: 20px;  padding-bottom: 5px; padding-top:12px}
+.green {color:#82AD00;}
+.sub_body_box .bnt{padding:0 0 0 0; text-align:center;}
+.sub_body_box .text_3{background:url(http://www.korapis.or.kr/images/sub_sicon.gif) no-repeat 0 0; padding:6px 0 0px 11px; margin-left:20px; font-weight:600;width:620px;}
+.sub_body_box .history_2{width:660px; margin-left:0px; border-top:1px solid #9C3; border-bottom:1px solid #9C3;}
+.sub_body_box .history_2 caption{display:none;}
+.sub_body_box .history_2 th{text-align:left; padding-left:20px; background-color:#FFF; color:#5e8529; height:30px;}
+.sub_body_box .history_2 td{text-align:left; padding-left:10px; background-color:#FFF; height:30px;}
+.sub_body_box .text_4{ border:1px solid #d7d7d7; padding:10px; border-radius:7px; -moz-border-radius:7px; background-color:#F4F4F4; margin:10px 0 10px 20px;}
+.sub_body_box .m_bnt{text-align:right; padding-right:120px;}
+.sub_body_box .text_5{background:url(http://www.korapis.or.kr/images/sub_sicon2.gif) no-repeat 0 0; padding:5px 0 0px 11px; margin-left:30px;}
+
+.sub_body_box .stats_table .line{background-color:#f9f7f7;}
+
+.sub_body_box .product_table {text-align:left; }
+.sub_body_box .product_table th {min-height:3.2rem}
+.sub_body_box .product_table td {min-height:3.2rem}
+.sub_body_box .product_table .t_left{text-align:left; vertical-align:top; padding:5px 5px;}
+.sub_body_box .text_4-1{padding:10px 0 20px 20px; background:url(http://www.korapis.or.kr/images/4-1_img_01.gif) no-repeat 0 0;text-align: justify;}
+.sub_body_box .text_4-2{padding:10px 0 20px 215px; background:url(http://www.korapis.or.kr/images/4-1_img_02.gif) no-repeat 0 0;text-align: justify;}
+.sub_body_box .text_4-3{margin-left:300px; width:620px;text-align: justify;}
+.sub_body_box .text_4_3{margin-left:32px; padding-bottom:5px;width:620px;text-align: justify;}
+.sub_body_box .text_4-3_1{margin-left:340px;text-align: justify;}
+.sub_body_box .text_4-4{text-align: justify;}
+.sub_body_box .text_4-3_1 span{color:#5674b9;}
+.sub_body_box .img_01{position:absolute; margin-top:10px;}
+.sub_body_box .img_02{position:absolute; margin-top:10px;}
+.sub_body_box .management_table{width:100%; margin-top:10px; table-layout:fixed;}
+.sub_body_box .management_table caption{display:none;}
+.sub_body_box .management_table th{padding:15px 10px; text-align:left; text-align:center; background-color:#f2f3f7; word-break:keep-all; word-wrap:break-word; text-indent:initial;}
+.sub_body_box .management_table td{padding:15px 10px;text-align:left; text-align:center; background-color:#FFF; word-break:keep-all; word-wrap:break-word; text-indent:initial;}
+.sub_body_box .management_table .t_left{text-align:left; vertical-align:top; padding:5px 5px;}
+
+/*.sub_body_box table ul{padding-left:40px}*/
+
+.popupbox, .popupbox * {padding:0; margin:0}
+.popupbox {padding:20px 10px}
+.popupbox .text{padding-top:20px;text-align: justify;}
+.popupbox .title{background:url(http://www.korapis.or.kr/images/sub_icon.gif) no-repeat 0 0; padding-left:25px; font-size:18px; font-weight:600; color:#363636;}
+.popupbox .text_2{padding:10px 0 20px 20px; width:730px; text-align: justify;}
+.popupbox .text_2 span{color:#5674b9;}
+.popupbox .product_table{width:730px; margin-left:20px;}
+.popupbox .product_table caption{display:none;}
+.popupbox .product_table th{text-align:left; text-align:center; background-color:#F5F4F1; padding:7px 0; min-height:17px}
+.popupbox .product_table td{text-align:left; text-align:center; background-color:#FFF; padding:7px 0; min-height:17px}
+.popupbox .product_table .t_left{text-align:left; vertical-align:top; padding:5px 5px;}
+
+.branch_map_w {overflow:hidden; position:relative; max-width:880px; margin: 0 auto;}
+.branch_map {float:left; margin-top:1rem; text-align:center;}
+.sub_body_box .branch_map_w .branch_table {float:right; width:500px;}
+.branch_map_w .sub_title {margin:0}
+
+.noneList {overflow:hidden;}
+.noneList > li, .noneTxt {margin-top:4px; padding-left:13px; font-size:13px; line-height:1.4; text-indent:-13px; word-break:keep-all; word-wrap:break-word;}
+.noneList > li:first-child {margin-top:0;}
+.dotList {overflow:hidden;}
+.dotList > li, .dotTxt {margin-top:4px; padding-left:13px; font-size:13px; line-height:1.4; text-indent:-13px; word-break:keep-all; word-wrap:break-word;}
+.dotList > li:first-child {margin-top:0;}
+.dotList > li:before, .dotTxt:before {content:'\00b7'; padding-right:8px; font-weight:600; color:#585858;}
+.dashList {overflow:hidden;}
+.dashList > li, .dashTxt {margin-top:4px; padding-left:13px; font-size:13px; line-height:1.4; text-indent:-13px; word-break:keep-all; word-wrap:break-word;}
+.dashList > li:first-child {margin-top:0;}
+.dashList > li:before, .dashTxt:before {content:'-'; padding-right:8px; font-weight:400;}
+
+.sub_container li {padding-left: 10px;padding-right: 10px;}
+.sub_menu_06 {display:none}
+
+*/
+/* 사양관리부분*/
+.timeline {
+	position: relative;
+	list-style-type: none;
+	padding: 30px 0 0px 0;
+}
+
+.event {
+	position: relative;
+	padding-bottom: 80px;
+}
+
+.event label.h_label {cursor:pointer;}
+
+.event input[type="radio"] {display:none;}
+
+.event label.radio_b{
+	width: 3.73rem;
+	height: 4.33rem;
+	left: 0px;
+	top: -1.2rem;
+	position: absolute;
+	display: block;
+	font-size:1.33rem;
+	color: #fff;
+    text-align: center;
+    line-height: 4.33rem;
+    background-image:url('http://www.korapis.or.kr/images/aco_off.png');
+    background-position:center center;
+    background-repeat:no-repeat;
+    background-size: 3.7rem;
+    z-index:10
+}
+
+.event:before {
+	content: '';
+	position: absolute;
+	width: 1px;
+	height:100%;
+	top: 0;
+	left:1.9rem;
+	background:#9a8d89;
+}
+.event:last-child:before {
+	content:none
+}
+
+.content-perspective {
+	width:100%;
+	padding-left:5.33rem;
+	position: relative;
+}
+
+.content-inner {
+	display:none;
+	position: relative;
+	padding:2rem;
+	color: #333;
+	border: none;
+	background: #f8f8f8;
+}
+
+.content-perspective h3 {
+	font-size: 1.26rem;
+	color: #5c5c5c;
+	margin-bottom: 0.5rem;
+}
+
+.content-inner table th {vertical-align:top}
+
+.content-inner .innerTxt strong {display:block;}
+
+
+
+/* Checked */
+
+.event input[type="radio"]:checked + label.radio_b{
+    background-image:url('http://www.korapis.or.kr/images/aco_on.png');
+}
+
+.event input[type="radio"]:checked ~ .content-perspective:before {
+	background: #F26328;
+}
+
+
+.event input[type="radio"]:checked ~ .content-perspective h3 {
+	color: #F26328;
+	font-size:1.4rem;
+}
+.event input[type="radio"]:checked ~ .content-perspective .content-inner {display:block;}
+
+
+.event input[type="radio"]:checked ~ .thumb span {
+	color: #F26328;
+}
+
+.event input[type="radio"]:checked ~ .thumb:before {
+	background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAICAYAAADA+m62AAAAPUlEQVQYV2NkQAOfUjX+882+wYgujiIAU4RNMVwhuiQ6H6wQl3XI4oy4FMHcCJPHcDS6J2A2EqUQpJhohQBbNyaHFmzEqgAAAABJRU5ErkJggg==);
+}
+
+
+/* --------------- 190405 리뉴얼 하며 가이드 스타일 추가 ------------------- */
+
+.fcmain {color:#553834 !important}
+.fcsub1 {color:#864d3a !important}
+.fcsub2 {color:#f99f13 !important}
+.fcred {color:#ba0007 !important}
+.fcyellow {color:#ffe432 !important}
+.fcblack {color:#292929 !important}
+.ffdotum {font-family:'돋움'}
+
+.bg_remon {background:#fffdf2 !important}
+
+.btn {display:inline-block; width:13.3rem; height:3.2rem; font-size:1.065rem; text-align:center; text-decoration:none !important; border:none;}
+.btn.wide {width:auto; padding:0 2.66rem}
+.btn.full {width:100%;}
+.btn.twoLine {height:auto; padding:1rem 0.5rem; line-height:1.4;}
+.sbtn {display:inline-block; padding:0.4rem 0.8rem; font-size:1rem; border-radius:2px; text-decoration:none; vertical-align:middle; text-decoration:none !important;}
+
+.btn:before {content:''; display:inline-block; width:1px; height:100%; margin-left:-1px; vertical-align:middle;}
+
+.main {background:#69584f; color:#fff !important}
+.sub {background:#98604d; color:#fff !important}
+.sub2 {background:#fde350; color:#553834}
+.bord {border:1px solid #bbafae; color:#553834}
+.cancel {background:#ddd}
+
+/* 텍스트 */
+.title_txt {padding-left:2.33rem; margin-top:3.3rem; margin-bottom:1rem; color:#292929; background:url('http://www.korapis.or.kr/images/bullet_01.png') left 1rem no-repeat; background-size: 1.7rem; font-size:2rem; font-weight:600;}
+.sub_title {padding-left:25px; margin-top: 2rem; color:#793f21; background:url('http://www.korapis.or.kr/images/bullet_02.png') left 0.5rem no-repeat; font-size:1.33rem; font-weight:600}
+.small_title {color:#000; font-weight:700}
+.text_3_1{position:relative; background:url(http://www.korapis.or.kr/images/sub_sicon.gif) no-repeat 0 0; padding:5px 0 0px 11px;font-weight:600;}
+.text_5_1{position:relative; padding:0px 0 0px 2rem;}
+.text_5_1:after {content:"-"; position:absolute; top:0; left:1rem}
+
+/* 박스 */
+.bd_box {padding:1.33rem; border: 1px dashed #707070;}
+.bg_box {padding:1.33rem; background:#f5f5f5}
+.step_box {padding:1.33rem; background:#f5f1ec}
+
+/* 스텝 */
+.step_arrow {display: inline-block; padding:1.2rem; box-sizing: content-box;}
+.step_up, .step_down {height:1.8rem}
+.step_left, .step_right {width:1.8rem}
+
+/* 그리드 */
+.grid_2:after, .grid_3:after ,.grid_4:after, .grid_5:after, .grid_6:after, .grid_7:after, .grid_8:after { content: ""; display: block; clear: both }
+.grid_2 > * {float:left; width:50%;}
+.grid_3 > * {float:left; width:33.33%;}
+.grid_4 > * {float:left; width:25%;}
+.grid_5 > * {float:left; width:20%;}
+.grid_6 > * {float:left; width:16.66%;}
+.grid_7 > * {float:left; width:14.4444%;}
+.grid_8 > * {float:left; width:12.5%;}
+
+/* 탭 */
+.tab_list {margin-bottom:1.33rem}
+.tab_list li {padding-right:3px; margin-bottom:3px;}
+.tab_list li:last-child {padding-right:0}
+.tab_list li.on a {color:#553834; background:none; border:2px solid #553834}
+.tab_list li a {display:inline-block; width:100%; height:3.2rem; color:#553834; background:#ebe8e7; text-align:center; text-decoration:none}
+.tab_list li a:before {content:''; display:inline-block; width:1px; height:100%; margin-left:-1px; vertical-align:middle;}
+
+/* 테이블 */
+.tableArea {overflow:hidden; margin-top:2rem;}
+.nobl {border-left:0;}
+
+.table_hor,
+.table_ver {width:100%; border-top:2px solid #252525; border-bottom:1px solid #c5c5c5; font-size:1.1rem; color:#5c5c5c; text-align:center; font-family:'NanumSquare', sans-serif ,'dotum','돋움';}
+.table_hor.col,
+.table_ver.col {border-top:0;}
+
+.table_hor th, .table_hor td,
+.table_ver th, .table_ver td {padding:1rem; border-left:1px solid #c5c5c5; word-break:keep-all; word-wrap:break-word;}
+
+.table_hor tr,
+.table_ver tr {border-top:1px solid #c5c5c5;}
+.table_hor th,
+.table_ver th { font-weight:600; color:#282828; background-color:#efefef;}
+.table_ver td {text-align:left; }
+.table_hor tr > *:first-child,
+.table_ver tr > *:first-child   {border:none}
+.table_hor tr .not-first { border-left:1px solid #c5c5c5; }
+
+.stable {font-size:1rem; letter-spacing:-1px;}
+.stable th, .stable td {padding:1.05rem 0.3rem}
+
+/* 인사말 */
+.intro .intro_img {display: none;}
+.intro .intro_txt {margin-top:2rem; width: 100%; height: 640px; padding: 1.5rem; background: url(../images/Yoon_Hoa_Houn_bg.jpg) no-repeat center center / contain;}
+.intro .intro_txt .txt_box {width: 60%; padding: 1.5rem; background-color: rgba(255,255,255,0.5); border-radius: 10%;}
+
+/* 찾아오시는 길 */
+.mediabox {overflow:hidden; position:relative; height:0; padding-top:56.25%; margin:1.33rem 0;}
+.mediabox > *{position: absolute; top:0; left:0; width:100%; height:100%;}
+
+/* 실험진행 순서 */
+.stepArea02 {font-size:0}
+.stepArea02 .step_box, .stepArea02 .step_arrow {font-size:1rem; vertical-align:middle}
+.stepArea02 .step_box {display:inline-block; width:calc(33.33% - 2.8rem); height:10rem; text-align:center;}
+.stepArea02 .step_box:before {content:''; display:inline-block; width:1px; height:100%; margin-left:-5px; vertical-align:middle;}
+.stepArea02 .step_box > * {display:inline-block; max-width:100%; vertical-align:middle;}
+.stepArea02 .stepline02 {text-align: center; padding-left: calc(66.66% + 2.8rem);}
+
+/* 회원가입 스텝 */
+.stepArea03 .step_box {text-align:left; letter-spacing:-1px;}
+.stepArea03 .step_box > * {vertical-align:top}
+
+/*낱말풀이 부분*/
+.etcArea01 {margin-top:2rem; padding:1.33rem; border: 1px dashed #707070; font-size: 1rem;}
+.etcArea01 strong{color:#f99f13}
+
+/* 역대회장 */
+.imwon_box {float:left; width:24%; margin-right:1.33%; margin-bottom:0.8rem; padding:2rem 0 1.66rem 0; border:1px solid #ddd; color:#161616; text-align:center;}
+.imwon_box:nth-child(4n) {margin-right:0}
+.imwon_box img { width:145px; height:150px; }
+.presi_num {font-size:1.1rem; margin-top: 0.6rem;}
+.presi_name {font-size:1.46rem; font-weight:bold}
+.presi_age {font-size:1.065rem}
+
+/* 회원가입 */
+.joinArea01 {padding-top:3.2rem}
+.joinArea01 li {width:50% ;padding-left:2rem}
+.joinArea01 li:first-child {border-right: 1px solid #ddd;}
+input#id {width:200px}
+
+/* 한 벌꿀 생산이력 검색 */
+.honeySchTxtArea {overflow:hidden; font-size:0;}
+.honeySchTxtArea > div {display:inline-block; font-size:1.065rem; vertical-align:middle;}
+.honeySchTxtArea > div.honeySchTxt {width:77%;}
+.honeySchTxtArea > div.honeySchTxtImg {width:23%; text-align:right;}
+
+
+
+@media screen and (min-width: 1200px) {
+	.ver_m {display:none}
+}
+
+@media screen and (max-width: 1199px) {
+	.ver_pc {display:none}
+	.ver_m {display:block;}
+	
+	#left_menu,
+	.sub_top_box .location {display:none;}
+	#sub_contents {width:100%; padding:1rem 1rem 6.6rem 1rem}
+
+	/* 인사말 */
+	.intro .intro_txt {height: 66.6666vw;}
+}
+
+@media screen and (max-width: 960px) {
+    #sub_wrap {padding-top:2rem}
+    .tab_list li:last-child {padding-right:3px}
+}
+
+@media only screen and (max-width:880px){
+    .branch_map {float:none; margin-top:0; text-align:center}
+    .sub_body_box .branch_map_w .branch_table {float:none; width:100%;}
+}
+
+@media screen and (max-width: 768px) {
+	/* 인사말 */
+	.intro .intro_img {display: block;}
+	.intro .intro_txt {height: auto; padding: 0; background: none;}
+	.intro .intro_txt .txt_box {width: 100%; background: none;}
+}
+
+@media screen and (max-width: 600px) {
+	.tab_list li a {font-size:1rem; letter-spacing:-0.5px;}
+	.joinArea01 li {float:none; width:100%; margin-bottom:2rem; padding-left: 10rem;}
+    .joinArea01 li:first-child {border-right:none}
+    
+    .stepArea03 .step_box {height:15rem;}
+}

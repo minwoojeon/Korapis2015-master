@@ -1,0 +1,9 @@
+#### config file ####
+
+
+## \uc6b4\uc601
+WEBROOT = /Users/junholee/_repo/Korapis2015/ROOT/
+FILE_UPLOAD_LIMIT = 30000000
+
+COOLSMS_API_KEY=
+COOLSMS_API_SECRET=

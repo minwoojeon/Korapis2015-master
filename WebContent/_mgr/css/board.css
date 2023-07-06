@@ -1,0 +1,121 @@
+@charset "utf-8";
+
+
+.board_1, .board_1_write {margin-top:20px; border-top:2px solid #BABABA}
+.board_1 * {vertical-align:middle}
+.board_1 th {height:52px; text-align:center; background:#f4f4f4 ; color:#444444;  border-bottom:1px solid #dddddd}
+.board_1 th.no{background:#f4f4f4}
+.board_1 td {height:50px; text-align:center; border-bottom:1px solid #dddddd}
+.board_1 td.title {text-align:left;}
+.board_1 td.title a {color:#444444;}
+.board_1 a {font-weight:bold}
+.board_1 a:hover {text-decoration: underline}
+.board_1_bottom {padding:10px 0; position:relative}
+.board_1_bottom p {text-align:right; margin-right:2px}
+.board1_search { height:50px}/*background:#f7f7f7;  */
+.board1_search p {display:inline;}
+.board_search_text input[type=text], .board_search_text input[type=password] {border:1px solid #BABABA; height:18px; line-height: 18px; padding:5px}
+.board_1 select {border:1px solid #BABABA; height:20px; line-height: 20px}
+.board_1 .btn_1:hover {text-decoration: none}
+.board_1_bottom a {padding:3px; display:inline-block}
+
+
+.board_1_write th, .board_1_write td {height:40px; border-bottom:1px solid #dddddd; vertical-align:middle}
+.board_1_write th {background:#f4f4f4; text-align:left}
+.board_1_write th label {padding-left:15px}
+.board_1_write td * {vertical-align:middle}
+.board_1_write td span {margin-left:8px}
+.board_1_write td input[type=text], .board_1_write td input[type=password] {border:1px solid #dddddd; margin:0 8px 0 8px; padding:5px}
+.board_1_write td input[type=file]{margin:0 8px 0 8px;}
+.board_1_write td textarea {border:1px solid #dddddd; margin:10px 0 5px 8px; overflow:auto;}
+.board_1_write td input#board_write_secret {border:none}
+.board_1_write td.btn_list {border-top:2px solid #b1b1b1; border-bottom:none; text-align:right; height:33px; padding-bottom:15px}
+.board_1_write .board_write_file {padding:7px 0}
+.board_1_write .board_write_file input {margin:7px 0}
+.board_1_write td.btn_list a {margin-left:3px}
+.board_1_write td.btn_list input {border:none; margin:-2px 0 0 3px}
+.board_1_write  tr.board_write_name th , .board_1_write  tr.board_write_name td{padding-left:15px}
+
+.board_1_view {margin:20px 0; }
+.board_view_top {padding:25px 3px 0 3px; height:16px; border-bottom:2px solid #b1b1b1; font-size:11px;}
+.board_view_top .t_r {float:right}
+.board_view_top .t_r span {margin-right:13px}
+.board_view_top .t_l {float:left}
+.board_1_view th {font-size:14px; padding:12px 3px 13px 3px; border-bottom:1px solid #dddddd;}
+.board_1_view .board_view_con { padding:15px 5px 15px 5px; border-bottom:1px solid #dddddd;}
+
+.board_1_view .board_file {padding:12px 5px;border-bottom:1px solid #dddddd;  line-height: 18px;}
+.board_1_view .board_file>strong {display:inline-block; padding-right:10px; height:12px}
+.board_1_view .board_file a:hover {text-decoration: underline}
+.board_1_view .board_file div {display:inline-block}
+.board_1_view .board_file div>span {display:block; font-size:13px;}
+	
+	
+.board_1_view .board_view_btn {text-align:right; padding:7px 3px;}
+.board_1_view .board_view_btn p {float:left}
+.board_1_view .board_drafter {background-color:#f8f8f8; padding:0; border:none; font-size:12px; color:#787878}
+
+/*수정부분*/
+.board_2 {border-top:2px solid #BABABA; width:100%; line-height: 22px}
+.board_2 *{vertical-align:middle}
+.board_2 th {height:50px; text-align: left; padding:0 12px; color:#444444;  border-bottom:1px solid #dddddd; background:#f4f4f4 ;}
+.board_2 td {border-bottom:1px solid #dddddd; text-align: left; padding:6px 12px;}
+.board_2 input[type=text], .board_2 input[type=password] {border:1px solid #d1d1d1; padding:5px; margin-right:5px;}
+.board_2 input[type=text]:focus,.board_2 input[type=text]:hover, .board_2 textarea:focus, .board_2 textarea:hover {background-color: #f3f6f9;border-color: #98a7b6;}
+.board_2 .tyep4 {display:inline-block; width:22%;}
+.board_2 thead th {text-align: center;}
+.board_2 th.taC {text-align: center; padding:0; background: #f4f4f4}
+.bl_ddd {border-left:1px solid #dddddd;}
+.br_rdd {border-right:1px solid #dddddd;}
+
+ul.board_2 {padding:20px 0; border-bottom:1px solid #dddddd; background:#f4f4f4 ;}
+ul.board_2 li {padding-left:30px; list-style-type:disc; list-style-position: inside; vertical-align:middle}
+
+.board_search { padding:4px;margin-top:15px; }
+.board_search .search_item { line-height:20px;margin-bottom:4px;margin-right:4px; }
+.board_search select { border:1px solid #bababa; height:22px;padding:1px; }
+.board_search input[type=text] { border:1px solid #bababa; height:20px; line-height:20px; }
+
+.board_search1 { padding:4px;margin-top:15px; }
+.board_search1 .search_item { line-height:20px;margin-bottom:4px;margin-right:4px; }
+.board_search1 select { border:1px solid #bababa; height:22px;padding:1px; }
+.board_search1 input[type=text] { border:1px solid #bababa; height:10px; line-height:20px; }
+
+
+table.form ,div.form  {border-top: 2px solid #BABABA;}
+table.form td.cat_def {background-color: #f4f4f4; color: #444444;}
+div.mod input[type=text], div.mod input[type=password], div.mod textarea {border: 1px solid #d1d1d1;padding: 5px;margin-right: 5px;}
+div.field label {padding: 13px 0; background-color: #f4f4f4; color: #444444;}
+.field ._comment{line-height: 20px}
+
+
+a.btn_downBook { 
+	display:inline-block;
+	padding:3px 8px 1px 8px;
+	line-height:15px;
+	border:1px solid #555; 
+	border-radius:2px;
+	text-align:center;
+	margin:1px 5px;
+	white-space:nowrap;
+	color:#black;
+	font-family:'돋움','dotum','Segoe UI','tahoma','ARIAL';
+	vertical-align:middle;
+	background-color:#d2d2d2;
+}
+
+
+
+
+
+
+
+
+.board_gallery {margin:30px auto; }
+.board_gallery dl {display:block; width:210px;text-align: left; margin:14px auto; background-color:#f3f3f3; border-bottom:2px solid #B1B1B1; border-top:1px solid #B1B1B1; cursor:pointer}
+.board_gallery dl:hover {background-color:#CCCCCC}
+.board_gallery dl dt .imgBox{display:block; width:210px; height:150px; overflow:hidden;}
+.board_gallery dl dt .imgBox img {width:100%; height: 100%}
+.board_gallery dl:hover dt .imgBox img {width:208px; height:148px; border: 1px solid #CCCCCC}
+.board_gallery dl .imgName {line-height: 20px; padding:12px 12px 0; font-weight:bold; height: 20px; overflow: hidden}
+.board_gallery dl dd {padding:0 12px 12px; font-size:11px}

@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+
+    <form-beans>    
+    </form-beans>
+
+    <global-exceptions>
+    </global-exceptions>
+
+
+
+
+
+		
+	<action-mappings>
+	
+	
+		<action
+			path="/Json"
+			type="kr.or.korapis.util.JsonAction"
+			validate="false">
+			<forward name="jsonPage" 		path="/_mgr/jsp/json/masterJson.jsp" />
+			<forward name="textPage" 		path="/_mgr/jsp/json/masterText.jsp" />
+			<forward name="HTMLPage"		path="/_mgr/jsp/json/masterHTML.jsp" />
+			<forward name="fail" 			path="/_mgr/jsp/errorPage.jsp"/>
+		</action>	
+	
+	
+		<!-- 시험성적결과서 -->
+		<action
+			path="/adminCerti"
+			type="kr.or.korapis.admin.certi.AdminCertiAction"
+			validate="false">
+			<forward name="listPage" 	path="/_mgr/jsp/certi/adminCertiList.jsp" />
+			<forward name="detailPage" 	path="/_mgr/jsp/certi/adminCertiDetail.jsp" />
+			<forward name="updatePage" 	path="/_mgr/jsp/certi/adminCertiUpdate.jsp" />
+			<forward name="uploadPage" 	path="/_mgr/jsp/certi/adminCertiUpload.jsp" />
+			<forward name="confirmPage" path="/_mgr/jsp/certi/adminCertiConfirm.jsp" />
+			<forward name="Pdf_ALL"  	path="/jsp/download.jsp" />
+			<forward name="script" 		path="/_mgr/jsp/certi/script.jsp"/>			
+		</action>
+		
+
+		<!-- 협회회원관리 -->
+		<action
+			path="/adminMember"
+			type="kr.or.korapis.admin.member.AdminMemberAction"
+			validate="false">
+			<forward name="listPage" 		path="/_mgr/jsp/member/adminMemberList.jsp" />
+			<forward name="detailPage" 		path="/_mgr/jsp/member/adminMemberDetail.jsp" />
+			<forward name="detailPage_popup" 		path="/_mgr/jsp/member/adminMemberDetail_popup.jsp" />
+			<forward name="registPage" 		path="/_mgr/jsp/member/adminMemberRegist.jsp" />
+			<forward name="popupPage" 		path="/_mgr/jsp/member/adminMemberPopup.jsp" />
+			<forward name="printPage"	 	path="/_mgr/jsp/member/adminMemberPrint.jsp" />
+			<forward name="downloadPage" 	path="/_mgr/jsp/member/adminMemberDown.jsp" />
+			<forward name="dmPage"	 	path="/_mgr/jsp/member/adminMemberDm.jsp" />
+			<forward name="script" 			path="/_mgr/jsp/member/script.jsp"/>
+		</action>
+				
+		<!-- 회원 회비납부 -->
+		<action
+			path="/adminPay"
+			type="kr.or.korapis.admin.pay.AdminPayAction"
+			validate="false">
+			<forward name="listPage" 	path="/_mgr/jsp/pay/adminPayList.jsp" />
+			<forward name="detailPage" 	path="/_mgr/jsp/pay/adminPayDetail.jsp" />
+			<forward name="registPage" 	path="/_mgr/jsp/pay/adminPayRegist.jsp" />
+			<forward name="downloadPage" 	path="/_mgr/jsp/pay/adminPayDown.jsp" />
+			<forward name="script" 			path="/_mgr/jsp/pay/script.jsp"/>			
+		</action>
+
+		<!-- 자조금 관리 -->
+		<action
+			path="/adminSelfcost"
+			type="kr.or.korapis.admin.selfcost.AdminSelfcostAction"
+			validate="false">
+			<forward name="statPage_year" 	path="/_mgr/jsp/selfcost/adminSelfcostStat_year.jsp" />
+			<forward name="statPage_month" 	path="/_mgr/jsp/selfcost/adminSelfcostStat_month.jsp" />
+			<forward name="listPage" 	path="/_mgr/jsp/selfcost/adminSelfcostList.jsp" />
+			<forward name="printPage"	 	path="/_mgr/jsp/selfcost/adminSelfcostPrint.jsp" />
+			<forward name="excelPage" 	path="/_mgr/jsp/selfcost/adminSelfcostExcel.jsp" />
+			<forward name="script" 		path="/_mgr/jsp/selfcost/script.jsp"/>			
+		</action>
+		
+		<!-- 게시판 관리 -->
+		<action
+			path="/adminBbs"
+			type="kr.or.korapis.admin.bbs.AdminBbsAction"
+			validate="false">
+			<forward name="listPage" 	path="/_mgr/jsp/bbs/adminBbsList.jsp" />
+			<forward name="detailPage" 	path="/_mgr/jsp/bbs/adminBbsDetail.jsp" />
+			<forward name="registPage" 	path="/_mgr/jsp/bbs/adminBbsRegist.jsp" />
+			<forward name="script" 		path="/_mgr/jsp/bbs/script.jsp"/>			
+		</action>
+		
+			
+		<!-- Ajax처리 -->
+		<action
+			path="/adminJson"
+			type="kr.or.korapis.admin.AdminJsonAction"
+			validate="false">
+			<forward name="jsonPage" 		path="/_mgr/jsp/json/masterJson.jsp" />
+			<forward name="textPage" 		path="/_mgr/jsp/json/masterText.jsp" />
+			<forward name="HTMLPage"		path="/_mgr/jsp/json/masterHTML.jsp" />
+			<forward name="fail" 			path="/_mgr/jsp/errorPage.jsp"/>
+		</action>
+		
+		<!-- sms발송 -->
+		<action
+			path="/adminSms"
+			type="kr.or.korapis.admin.sms.AdminSmsAction"
+			validate="false">
+			<forward name="sendPage" 	path="/_mgr/jsp/sms/adminSms.jsp" />
+			<forward name="script" 		path="/_mgr/jsp/sms/script.jsp"/>
+		</action>
+		
+	
+	
+	
+		
+		<action
+			path="/login"
+			type="kr.or.korapis.login.LoginAction"
+			validate="false">
+			<forward name="loginPage" 	path="/_mgr/jsp/login.jsp" />
+			<forward name="success" 	path="/_mgr/jsp/default.jsp" />		
+			<forward name="fail" 		path="/_mgr/jsp/errorPage.jsp"/>
+			<forward name="script" 	path="/_mgr/jsp/script.jsp"/>
+		</action>
+
+
+		<action
+			path="/dashboard"
+			type="kr.or.korapis.dashboard.DashboardAction"
+			validate="false">
+			<forward name="success" 	path="/_mgr/jsp/default.jsp" />
+		</action>	
+		
+		<action
+			path="/memberList"
+			type="kr.or.korapis.member.MemberAction"
+			validate="false">
+			<forward name="listPage" 	path="/_mgr/jsp/member/memberList.jsp" />
+			<forward name="detailPage" 	path="/_mgr/jsp/member/memberDetail.jsp" />
+			<forward name="script" 		path="/_mgr/jsp/member/script.jsp"/>
+		</action>
+		
+		
+		<action
+			path="/certiList"
+			type="kr.or.korapis.certi.CertiAction"
+			validate="false">
+			<forward name="listPage" 	path="/_mgr/jsp/certi/certiList.jsp" />
+			<forward name="detailPage" 	path="/_mgr/jsp/certi/certiDetail.jsp" />
+			<forward name="script" 		path="/_mgr/jsp/certi/script.jsp"/>
+		</action>
+		
+			<!-- 정보센터 팝업관리 -->
+		<action
+			path="/adminInfoPopup"
+			type="kr.or.korapis.admin.info.AdminInfoPopupAction"
+			validate="false">
+			<forward name="listPage"		path="/_mgr/jsp/info/adminInfoPopupList.jsp" />
+			<forward name="registPage"	path="/_mgr/jsp/info/adminInfoPopupRegist.jsp" />
+			<forward name="script"		path="/_mgr/jsp/info/script.jsp" />
+			<forward name="fail"			path="/jsp/errorPage.jsp" />
+		</action>
+		
+			<!-- QR코드 관리 -->
+		<action
+			path="/adminselfQRCode"
+			type="kr.or.korapis.admin.QRCode.AdminSelfQRCodeAction"
+			validate="false">
+			<forward name="listPage"		path="/_mgr/jsp/QRCode/adminSelfQRCodeList.jsp" />
+			<forward name="detailPage"		path="/_mgr/jsp/QRCode/adminSelfQRCodeDetail.jsp" />
+			<forward name="updatePage"		path="/_mgr/jsp/QRCode/adminSelfQRCodeUpdate.jsp" />
+			<forward name="pubPage"		path="/_mgr/jsp/QRCode/adminSelfQRCodePub.jsp" />
+			<forward name="ownerDetailPage"		path="/_mgr/jsp/QRCode/adminSelfQRCodeOwnerDetail.jsp" />
+			<forward name="ownerDeletePage"		path="/_mgr/jsp/QRCode/adminSelfQRCodeOwnerDelete.jsp" />
+			<forward name="ownerAddPage"		path="/_mgr/jsp/QRCode/adminSelfQRCodeOwnerAdd.jsp" />
+			<forward name="historyPage"		path="/_mgr/jsp/QRCode/adminSelfQRCodeHistory.jsp" />
+			<forward name="success" 	path="/_mgr/jsp/menu/topMenu.jsp" />
+			<forward name="script"		path="/_mgr/jsp/QRCode/script.jsp" />
+		</action>
+		
+		
+
+		<action
+			path="/logout"
+			type="kr.or.korapis.login.LogoutAction"
+			validate="false">
+			<forward name="script" path="/_mgr/jsp/script.jsp" />
+			<forward name="fail" path="/_mgr/jsp/errorPage.jsp"/>
+		</action>	
+	
+	
+		<!-- 메뉴/공통 -->
+		<action	path="/topMenu"		forward="/_mgr/jsp/menu/topMenu.jsp" />
+		<action	path="/leftMenu"	forward="/_mgr/jsp/menu/leftMenu.jsp" />
+		<action	path="/adminReady"	forward="/_mgr/jsp/ready.jsp" />
+
+		
+				
+		
+		
+			
+	</action-mappings>
+
+
+	<!-- <message-resources parameter="com.micehub.util.message.Common" /> -->
+		
+
+
+
+</struts-config>
+

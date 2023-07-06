@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<title>사단법인 한국양봉협회</title>
+<style type="text/css">
+* {margin:0; padding:0}
+.btn2{padding:12px}
+.btn2 a{display:inline-block; background: #ee9f07; padding:7px 15px; margin:7px 0 5px; font:bold 15px/18px Arial; color:#ffffff; text-decoration: none; border-radius:5px}
+.btn2 a:hover {color:#ffec00; background-color: #41392d}
+</style>
+</head>
+<body style="background-color:#656053">
+
+
+<div id="divpop" >
+<center>
+<img src="api_greetings.jpg"/>
+
+<!--
+<form name="divpop_frm" method="post" action="" style="display:block; font-size:11px;  background-color: #d8d3c9">
+  <input type="checkbox" name="chkbox" value="Y" onclick="javascript:f_close(1);" style="vertical-align: middle" id="popup_check">
+<label for="popup_check">View Not Today</label> &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; <a href="javascript:;" onclick="javascript:f_close(2)" style="line-height:30px; color:#333;"><b>[Close]</b></a>
+</form> 
+-->
+</center>
+</div>
+
+<script>
+function set_cookie(name, value, expiredays) {
+	var todayDate = new Date();
+	todayDate.setDate( todayDate.getDate() + expiredays );
+	document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";";
+}
+
+
+/* function close_divpop(frm, pop) {
+	var f = eval("document."+frm);
+	if(f.chkbox.checked){
+		set_cookie(pop, "Y", 1);
+	}
+	document.getElementById(pop).style.display = "none";
+}  */
+
+/*
+function ff_close(i){
+	if(i==1){
+		set_cookie("abstract_pop", "Y", 1);
+	}
+}
+
+function ff_close2(i){
+	if(i==1){
+		set_cookie("registration_pop", "Y", 1);
+	}
+}
+
+
+function f_close(i){
+	ff_close(i);
+	window.close();
+}
+
+function f_goAbs(){
+	window.close();
+	opener.location = "http://apimondia2015.com/2015/eng/sub_02-03.jsp";
+}
+*/
+</script>
+
+</body>
+</html>
