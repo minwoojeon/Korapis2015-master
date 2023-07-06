@@ -190,6 +190,10 @@ public class AdminCertiAction extends BaseUserAction {
 			
 			boolean isChkDisp = "Y".equals(param.getString("chk_disp"));
 			
+			// 2023.07.05. botbinoo.
+			PdfWriter pdfWriter = null;
+            // end 2023.07.05. botbinoo.
+			
 			 try{
 				 DecimalFormat format = new DecimalFormat("###.###");
 			    String webRoot = Conf.getInstance().getProperty("WEBROOT");
@@ -197,7 +201,10 @@ public class AdminCertiAction extends BaseUserAction {
 		        //Document를 생성한다.				
 				Document document = new Document(PageSize.A4, 20,20,30,30);
 	            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-	            PdfWriter.getInstance(document, baos);
+	            // 2023.07.05. botbinoo.
+//                PdfWriter.getInstance(document, baos);
+                pdfWriter = PdfWriter.getInstance(document, baos);
+	            // end 2023.07.05. botbinoo.
 	            
 	            String firstRegnum = "";
 	            String lastRegnum = "";
@@ -2387,11 +2394,14 @@ public class AdminCertiAction extends BaseUserAction {
 		 	            mid_table.addCell(sf_4);
 		 	            
 		 	            if(성상 == 1) {
-							// 2023.07.05. 부적합시 해당 도장 삭제
-		 	            	Image stampLogo = Image.getInstance(webRoot + "images/stamp.png");
-			 	            PdfPCell stampCell = new PdfPCell(stampLogo);
-			 	            stampCell.setHorizontalAlignment(Element.ALIGN_CENTER); stampCell.setVerticalAlignment(Element.ALIGN_MIDDLE); stampCell.setFixedHeight(22); stampCell.setColspan(1);
-		 	            	mid_table.addCell(stampCell);
+							// 2023.07.06. 부적합시 해당 도장 삭제
+		 	                if(! "부적합".equals(OverallResult)) {
+	                            Image stampLogo = Image.getInstance(webRoot + "images/stamp.png");
+	                            PdfPCell stampCell = new PdfPCell(stampLogo);
+	                            stampCell.setHorizontalAlignment(Element.ALIGN_CENTER); stampCell.setVerticalAlignment(Element.ALIGN_MIDDLE); stampCell.setFixedHeight(22); stampCell.setColspan(1);
+	                            mid_table.addCell(stampCell);
+		 	                }
+                            // end 2023.07.06. 부적합시 해당 도장 삭제
 		 	            	
 		 	            }
 
@@ -2426,18 +2436,18 @@ public class AdminCertiAction extends BaseUserAction {
 		            preface.add(Chunk.NEWLINE);
 		            preface.add(end_footer_last);
 		            
-		            
-					// 2023.07.05. dev, botbinoo. 이미지 채도 조정
 		            //참고용도장
 		            if(!("한벌꿀(봉인)".equals(prdNm)
 				            || "봉인".equals(prdNm)
 				            || "벌집꿀(봉인)".equals(prdNm))
 		            		){
 		            	if(!"N".equals(param.getString("chk_reference"))){
-			            	Image image_reference_top = Image.getInstance(webRoot+"images/for_reference_top.png");
+                            // 2023.07.05. dev, botbinoo. 이미지 투명도 조정
+//                            Image image_reference_top = Image.getInstance(webRoot+"images/for_reference_top.png");
+                            Image image_reference_top = Image.getInstance(webRoot+"images/for_reference_top_tmp55.png");
+                            // end 2023.07.05. dev, botbinoo. 이미지 투명도 조정
 			            	image_reference_top.setAbsolutePosition(225, 530);
 			            	image_reference_top.scalePercent(12);
-				            preface.add(image_reference_top);
 		            	}
 			            
 		            }
@@ -2449,7 +2459,21 @@ public class AdminCertiAction extends BaseUserAction {
 		            		|| "전체(참고)".equals(prdNm))
 		            		){
 		            	if(!"N".equals(param.getString("chk_food"))){
-				            Image image_food = Image.getInstance(webRoot+"images/for_reference_bot.png");
+                            // 2023.07.05. dev, botbinoo. 이미지 투명도 조정
+//                            Image image_food = Image.getInstance(webRoot+"images/for_reference_bot.png");
+                            Image image_food = Image.getInstance(webRoot+"images/for_reference_bot_tmp55.png");
+                            if("일반".equals(prdNm)
+                                || "일반+탄소".equals(prdNm)
+                                || "탄소".equals(prdNm)
+                                
+                                || "잔류".equals(prdNm)
+                                || "잔류+탄소".equals(prdNm)
+                                || "탄소".equals(prdNm)
+                                ){
+                                
+                                image_food = Image.getInstance(webRoot+"images/for_reference_bot_2_tmp55.png");
+                            }
+                            // end 2023.07.05. dev, botbinoo. 이미지 투명도 조정
 				            if(certiType == AdminCertiDao.CERTI_TYPE_HAN_1){
 				            	image_food.setAbsolutePosition(155, 238);
 				            }else{

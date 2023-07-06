@@ -262,7 +262,10 @@ public class ItextPdfDown_All {
 	            
 	            
 	            Paragraph mid_footer_1 = new Paragraph("      ·이 통지서는 식품공전에 의거한 검사 성적서이며, 검사 완료 후 6개월간 유효합니다. ", new Font(objBaseFont_newgulim, 10));
-	            Paragraph mid_footer_2 = new Paragraph("      ·이 통지서는 홍보, 선전, 광고 및 소송용으로 사용할 수 없으며 납품 및 참고자료 이외의 사용을 금합니다.", new Font(objBaseFont_newgulim, 10));
+                // 2023.07.06. 불필요한 중복 내용 삭제
+//	            Paragraph mid_footer_2 = new Paragraph("      ·이 통지서는 홍보, 선전, 광고 및 소송용으로 사용할 수 없으며 납품 및 참고자료 이외의 사용을 금합니다.", new Font(objBaseFont_newgulim, 10));
+                Paragraph mid_footer_2 = new Paragraph("      ·NO.1~12 벌꿀규격 및 일반 성상/ NO.13~18 항생제/ NO.19 구충제/ NO.20~24 농약/ NO.25 독성물질", new Font(objBaseFont_newgulim, 10));
+                // end 2023.07.06. 불필요한 중복 내용 삭제
 	            Paragraph mid_footer = new Paragraph("                              ", new Font(objBaseFont_newgulim, 10));
 	            
 	            mid_footer_1.setAlignment(Paragraph.ALIGN_LEFT);
@@ -274,7 +277,6 @@ public class ItextPdfDown_All {
 	            preface.add(mid_footer);
 	            
 	            if(certiType == AdminCertiDao.CERTI_TYPE_HAN_1){
-					// 2023.07.05. 불필요한 중복 내용 삭제
 	            	 Paragraph mid_footer_3 = new Paragraph("      ·이 통지서는 홍보, 선전, 광고 및 소송용으로 사용할 수 없으며 납품 및 참고자료 이외의 사용을 금합니다.", new Font(objBaseFont_dotum, 10, Font.BOLD));
 			         mid_footer_3.setAlignment(Paragraph.ALIGN_LEFT);
 			         preface.add(mid_footer_3);
@@ -502,9 +504,7 @@ public class ItextPdfDown_All {
 		            	}else{
 		            		mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
 		            	}
-		            }
-		            
-		            
+		            }		            
 		            
 		            mid_table.addCell(new Paragraph("18", new Font(objBaseFont_dotum, 10)));
 		            cell = new PdfPCell(new Phrase(" 코마포스", new Font(objBaseFont_dotum, 10)));
@@ -2246,11 +2246,14 @@ public class ItextPdfDown_All {
 	 	            mid_table.addCell(sf_4);
 	 	            
 	 	            if(성상 == 1) {
-	 	            	Image stampLogo = Image.getInstance(webRoot + "images/stamp.png");
-		 	            PdfPCell stampCell = new PdfPCell(stampLogo);
-		 	            stampCell.setHorizontalAlignment(Element.ALIGN_CENTER); stampCell.setVerticalAlignment(Element.ALIGN_MIDDLE); stampCell.setFixedHeight(22); stampCell.setColspan(1);
-	 	            	mid_table.addCell(stampCell);
-	 	            	
+                        // 2023.07.06. 부적합시 해당 도장 삭제
+                        if(! "부적합".equals(OverallResult)) {
+                            Image stampLogo = Image.getInstance(webRoot + "images/stamp.png");
+                            PdfPCell stampCell = new PdfPCell(stampLogo);
+                            stampCell.setHorizontalAlignment(Element.ALIGN_CENTER); stampCell.setVerticalAlignment(Element.ALIGN_MIDDLE); stampCell.setFixedHeight(22); stampCell.setColspan(1);
+                            mid_table.addCell(stampCell);
+                        }
+                        // end 2023.07.06. 부적합시 해당 도장 삭제
 	 	            }
 
 	 	            preface.add(mid_table);
@@ -2291,7 +2294,10 @@ public class ItextPdfDown_All {
 			            || "벌집꿀(봉인)".equals(prdNm))
 	            		){
 	            	if(!"N".equals(param.getString("chk_reference"))){
-		            	Image image_reference_top = Image.getInstance(webRoot+"images/for_reference_top.png");
+                        // 2023.07.05. dev, botbinoo. 이미지 투명도 조정
+//                      Image image_reference_top = Image.getInstance(webRoot+"images/for_reference_top.png");
+                      Image image_reference_top = Image.getInstance(webRoot+"images/for_reference_top_tmp55.png");
+                      // end 2023.07.05. dev, botbinoo. 이미지 투명도 조정
 		            	image_reference_top.setAbsolutePosition(225, 530);
 		            	image_reference_top.scalePercent(12);
 			            preface.add(image_reference_top);
@@ -2306,7 +2312,23 @@ public class ItextPdfDown_All {
 	            		|| "전체(참고)".equals(prdNm))
 	            		){
 	            	if(!"N".equals(param.getString("chk_food"))){
-			            Image image_food = Image.getInstance(webRoot+"images/for_reference_bot.png");
+                        // 2023.07.05. dev, botbinoo. 이미지 투명도 조정
+//                      Image image_food = Image.getInstance(webRoot+"images/for_reference_bot.png");
+
+
+	                    Image image_food = Image.getInstance(webRoot+"images/for_reference_bot_tmp55.png");
+	                    if("일반".equals(prdNm)
+                            || "일반+탄소".equals(prdNm)
+                            || "탄소".equals(prdNm)
+                            
+                            || "잔류".equals(prdNm)
+                            || "잔류+탄소".equals(prdNm)
+                            || "탄소".equals(prdNm)
+	                        ){
+	                        
+	                        image_food = Image.getInstance(webRoot+"images/for_reference_bot_2_tmp55.png");
+	                    }
+                      // end 2023.07.05. dev, botbinoo. 이미지 투명도 조정
 			            if(certiType == AdminCertiDao.CERTI_TYPE_HAN_1){
 			            	image_food.setAbsolutePosition(155, 238);
 			            }else{
