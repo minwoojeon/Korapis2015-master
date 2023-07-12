@@ -88,7 +88,7 @@ public class ItextPdfDown_All {
 				int 클로람페니콜 = 0;
 				int 스트렙토마이신 = 0;
 				int 시미아졸 = 0;
-				int 니트로푸란 = 0;
+//				int 니트로푸란 = 0;
 				int 옥시테트라싸이클린 = 0;
 				int 코마포스 = 0;
 				int 설폰아마이드 = 0;
@@ -203,10 +203,15 @@ public class ItextPdfDown_All {
 				image_line.scalePercent(116, 73);
 				preface.add(image_line);
 
-	            String subTitleText = "시험 성적 통지서";
+				// 2023.07.12. botbinoo. 양식 변경
+//                String subTitleText = "시험 성적 통지서";
+                String subTitleText = PdfDocumentWrite.getSubTitleText2(prdNm);
 	            if(certiType == AdminCertiDao.CERTI_TYPE_HAN_1){
-	            	subTitleText = "시험 결과 통지서";
+//                    subTitleText = "시험 결과 통지서";
+                    subTitleText = PdfDocumentWrite.getSubTitleText(prdNm);
 	            }
+	            BaseColor tableBaseColor = PdfDocumentWrite.getTableBaseColor(prdNm);
+                // end 2023.07.12. botbinoo. 양식 변경
 	            Paragraph sub_title = new Paragraph( subTitleText, new Font(objBaseFont_newgulim, 20, Font.BOLD) );
 	            preface.add(sub_title); 
 	            preface.add("");
@@ -221,7 +226,10 @@ public class ItextPdfDown_All {
 	            table.getDefaultCell().setFixedHeight(19);
 	            ItextPdfUtil event = new ItextPdfUtil();
 	            table.setTableEvent(event);
-	            table.getDefaultCell().setBackgroundColor(new BaseColor(208,234,237));
+                // 2023.07.12. botbinoo. 양식 변경
+//                table.getDefaultCell().setBackgroundColor(new BaseColor(208,234,237));
+                table.getDefaultCell().setBackgroundColor(tableBaseColor);
+                // end 2023.07.12. botbinoo. 양식 변경
 	            
 	            if(certiType == AdminCertiDao.CERTI_TYPE_HAN_0){
 		            table.addCell(new Paragraph("·발급번호 : "+data.getString("sel_issuenum"), new Font(objBaseFont_dotum, 11)));
@@ -241,7 +249,10 @@ public class ItextPdfDown_All {
 	            	table.addCell(new Paragraph("·검체표시 : "+data.getString("검체표시"), new Font(objBaseFont_dotum, 11)));
 	            }else if(certiType == AdminCertiDao.CERTI_TYPE_HAN_1){
 		            PdfPCell cell_gumche = new PdfPCell(new Phrase("·검체표시 : "+data.getString("검체표시"), new Font(objBaseFont_dotum, 11)));	
-		            cell_gumche.setBackgroundColor(new BaseColor(208,234,237));
+	                // 2023.07.12. botbinoo. 양식 변경
+//		            cell_gumche.setBackgroundColor(new BaseColor(208,234,237));
+		            cell_gumche.setBackgroundColor(tableBaseColor);
+	                // end 2023.07.12. botbinoo. 양식 변경
 		            cell_gumche.setHorizontalAlignment(Element.ALIGN_LEFT);
 		            cell_gumche.setFixedHeight(19);
 		            cell_gumche.setColspan(2);
@@ -252,7 +263,11 @@ public class ItextPdfDown_All {
 	            table.addCell(new Paragraph("·연 락 처 : "+(!"--".equals(data.getString("Hphone")) ? data.getString("Hphone") : data.getString("mobile")), new Font(objBaseFont_dotum, 11)));
 	            
 	            PdfPCell c2 = new PdfPCell(new Phrase("·주소 : "+("H".equals(data.getString("mailreceive")) ? data.getString("home_addr") : data.getString("offc_addr")), new Font(objBaseFont_dotum, 11)));	
-	            c2.setBackgroundColor(new BaseColor(208,234,237));
+
+                // 2023.07.12. botbinoo. 양식 변경
+//	            c2.setBackgroundColor(new BaseColor(208,234,237));
+	            c2.setBackgroundColor(tableBaseColor);
+                // end 2023.07.12. botbinoo. 양식 변경
 	            c2.setHorizontalAlignment(Element.ALIGN_LEFT);
 	            c2.setFixedHeight(19);
 	            c2.setColspan(3); 
@@ -261,32 +276,82 @@ public class ItextPdfDown_All {
 	            preface.add(table);
 	            
 	            
-	            Paragraph mid_footer_1 = new Paragraph("      ·이 통지서는 식품공전에 의거한 검사 성적서이며, 검사 완료 후 6개월간 유효합니다. ", new Font(objBaseFont_newgulim, 10));
                 // 2023.07.06. 불필요한 중복 내용 삭제
-//	            Paragraph mid_footer_2 = new Paragraph("      ·이 통지서는 홍보, 선전, 광고 및 소송용으로 사용할 수 없으며 납품 및 참고자료 이외의 사용을 금합니다.", new Font(objBaseFont_newgulim, 10));
-                Paragraph mid_footer_2 = new Paragraph("      ·NO.1~12 벌꿀규격 및 일반 성상/ NO.13~18 항생제/ NO.19 구충제/ NO.20~24 농약/ NO.25 독성물질", new Font(objBaseFont_newgulim, 10));
+/*
+                Paragraph mid_footer_1 = new Paragraph("      ·이 통지서는 식품공전에 의거한 검사 성적서이며, 검사 완료 후 6개월간 유효합니다. ", new Font(objBaseFont_newgulim, 10));
+//              Paragraph mid_footer_2 = new Paragraph("      ·이 통지서는 홍보, 선전, 광고 및 소송용으로 사용할 수 없으며 납품 및 참고자료 이외의 사용을 금합니다.", new Font(objBaseFont_newgulim, 10));
+//                Paragraph mid_footer_2 = new Paragraph("      ·NO.1~12 벌꿀규격 및 일반 성상/ NO.13~18 항생제/ NO.19 구충제/ NO.20~24 농약/ NO.25 독성물질", new Font(objBaseFont_newgulim, 10));
+                Paragraph mid_footer_2 = new Paragraph("      ·NO.1~12 벌꿀규격 및 일반 성상/ NO.13~17 항생제/ NO.18 구충제/ NO.19~23 농약/ NO.24 독성물질", new Font(objBaseFont_newgulim, 10));
+                
+                Paragraph mid_footer = new Paragraph("                              ", new Font(objBaseFont_newgulim, 10));
+                
+                mid_footer_1.setAlignment(Paragraph.ALIGN_LEFT);
+                mid_footer_2.setAlignment(Paragraph.ALIGN_LEFT);
+                mid_footer.setAlignment(Paragraph.ALIGN_LEFT);
+                
+                preface.add(mid_footer_1);
+                preface.add(mid_footer_2);
+                preface.add(mid_footer);
+                */
+	            if(PdfDocumentWrite.isReferToDoc(prdNm)) {
+                    Paragraph mid_footer_1 = new Paragraph("      ·이 통지서는 의뢰자가 제시한 시료에 한정된 결과로서 전체 제품에 대한 품질을 보증하지는 않습니다. ", new Font(objBaseFont_newgulim, 10, Font.BOLD));
+                    Paragraph mid_footer_2 = new Paragraph("      ·이 통지서는 홍보 선전 광고 및 소송용으로 사용될 수 없으며 용도 이외의 사용을 금합니다. ", new Font(objBaseFont_newgulim, 10));
+                    Paragraph mid_footer_3 = new Paragraph("      ·이 통지서의 일부만을 발췌 또는 수정하여 사용할 수 없습니다. ", new Font(objBaseFont_newgulim, 10));
+                    
+	                Paragraph mid_footer_4 = new Paragraph("      ·이 통지서는 식품공전에 의거한 검사 성적서이며, 검사 완료 후 6개월간 유효합니다. ", new Font(objBaseFont_newgulim, 10));
+	                Paragraph mid_footer_5 = new Paragraph("      ·NO.1~12 벌꿀규격 및 일반 성상/ NO.13~17 항생제/ NO.18 구충제/ NO.19~23 농약/ NO.24 독성물질", new Font(objBaseFont_newgulim, 10));
+	                Paragraph mid_footer = new Paragraph("                              ", new Font(objBaseFont_newgulim, 10));
+	                
+	                mid_footer_1.setAlignment(Paragraph.ALIGN_LEFT);
+                    mid_footer_2.setAlignment(Paragraph.ALIGN_LEFT);
+                    mid_footer_3.setAlignment(Paragraph.ALIGN_LEFT);
+                    mid_footer_4.setAlignment(Paragraph.ALIGN_LEFT);
+                    mid_footer_5.setAlignment(Paragraph.ALIGN_LEFT);
+	                mid_footer.setAlignment(Paragraph.ALIGN_LEFT);
+	                
+	                preface.add(mid_footer_1);
+                    preface.add(mid_footer_2);
+                    preface.add(mid_footer_3);
+                    preface.add(mid_footer_4);
+                    preface.add(mid_footer_5);
+	                preface.add(mid_footer);
+	            } else {
+
+                    Paragraph mid_footer_2 = new Paragraph("      ·이 통지서는 홍보 선전 광고 및 소송용으로 사용될 수 없으며 납품 및 참고자료 이외의 사용을 금합니다. ", new Font(objBaseFont_newgulim, 10));
+                    Paragraph mid_footer_3 = new Paragraph("      ·이 통지서의 일부만을 발췌 또는 수정하여 사용할 수 없습니다. ", new Font(objBaseFont_newgulim, 10));
+                    
+                    Paragraph mid_footer_4 = new Paragraph("      ·이 통지서는 식품공전에 의거한 검사 성적서이며, 검사 완료 후 6개월간 유효합니다. ", new Font(objBaseFont_newgulim, 10));
+                    Paragraph mid_footer_5 = new Paragraph("      ·NO.1~12 벌꿀규격 및 일반 성상/ NO.13~17 항생제/ NO.18 구충제/ NO.19~23 농약/ NO.24 독성물질", new Font(objBaseFont_newgulim, 10));
+                    Paragraph mid_footer = new Paragraph("                              ", new Font(objBaseFont_newgulim, 10));
+                    
+                    mid_footer_2.setAlignment(Paragraph.ALIGN_LEFT);
+                    mid_footer_3.setAlignment(Paragraph.ALIGN_LEFT);
+                    mid_footer_4.setAlignment(Paragraph.ALIGN_LEFT);
+                    mid_footer_5.setAlignment(Paragraph.ALIGN_LEFT);
+                    mid_footer.setAlignment(Paragraph.ALIGN_LEFT);
+                    
+                    preface.add(mid_footer_2);
+                    preface.add(mid_footer_3);
+                    preface.add(mid_footer_4);
+                    preface.add(mid_footer_5);
+                    preface.add(mid_footer);
+	            }
+                
                 // end 2023.07.06. 불필요한 중복 내용 삭제
-	            Paragraph mid_footer = new Paragraph("                              ", new Font(objBaseFont_newgulim, 10));
-	            
-	            mid_footer_1.setAlignment(Paragraph.ALIGN_LEFT);
-	            mid_footer_2.setAlignment(Paragraph.ALIGN_LEFT);
-	            mid_footer.setAlignment(Paragraph.ALIGN_LEFT);
-	            
-	            preface.add(mid_footer_1);
-	            preface.add(mid_footer_2);
-	            preface.add(mid_footer);
 	            
 	            if(certiType == AdminCertiDao.CERTI_TYPE_HAN_1){
+	                /*
 	            	 Paragraph mid_footer_3 = new Paragraph("      ·이 통지서는 홍보, 선전, 광고 및 소송용으로 사용할 수 없으며 납품 및 참고자료 이외의 사용을 금합니다.", new Font(objBaseFont_dotum, 10, Font.BOLD));
 			         mid_footer_3.setAlignment(Paragraph.ALIGN_LEFT);
 			         preface.add(mid_footer_3);
 			         preface.add(Chunk.NEWLINE);
+			         */
 	            }else{
 		            Paragraph mid_title_head = new Paragraph("시 험 결 과", new Font(objBaseFont_dotum, 20, Font.BOLD));
 		            mid_title_head.setAlignment(Paragraph.ALIGN_CENTER);
 		            preface.add(mid_title_head);
 	            }
-	            preface.add("");
+//	            preface.add("");
 	            
 	            
 	            /**
@@ -339,15 +404,26 @@ public class ItextPdfDown_All {
 	            s_header7.setHorizontalAlignment(Element.ALIGN_CENTER);
 	            s_header8.setHorizontalAlignment(Element.ALIGN_CENTER);
 	            
-	            
-	            s_header1.setBackgroundColor(new BaseColor(163,215,221));
+
+                // 2023.07.12. botbinoo. 양식 변경
+	            /*s_header1.setBackgroundColor(new BaseColor(163,215,221));
 	            s_header2.setBackgroundColor(new BaseColor(163,215,221));
 	            s_header3.setBackgroundColor(new BaseColor(163,215,221));
 	            s_header4.setBackgroundColor(new BaseColor(163,215,221));
 	            s_header5.setBackgroundColor(new BaseColor(163,215,221));
 	            s_header6.setBackgroundColor(new BaseColor(163,215,221));
 	            s_header7.setBackgroundColor(new BaseColor(163,215,221));
-	            s_header8.setBackgroundColor(new BaseColor(163,215,221));
+	            s_header8.setBackgroundColor(new BaseColor(163,215,221));*/
+	            
+                s_header1.setBackgroundColor(tableBaseColor);
+                s_header2.setBackgroundColor(tableBaseColor);
+                s_header3.setBackgroundColor(tableBaseColor);
+                s_header4.setBackgroundColor(tableBaseColor);
+                s_header5.setBackgroundColor(tableBaseColor);
+                s_header6.setBackgroundColor(tableBaseColor);
+                s_header7.setBackgroundColor(tableBaseColor);
+                s_header8.setBackgroundColor(tableBaseColor);
+                // end 2023.07.12. botbinoo. 양식 변경
 	            
 	            mid_table.addCell(s_header1);
 	            mid_table.addCell(s_header2);
@@ -372,9 +448,11 @@ public class ItextPdfDown_All {
 		            
 		            성상 = "적합".equals(data.getString("sung_valu")) ? 0 : 1;
 		            
-		            
+
+                    // 2023.07.12. botbinoo. 양식 변경
+		            /*
 		            mid_table.addCell(new Paragraph("16", new Font(objBaseFont_dotum, 10)));
-		            cell = new PdfPCell(new Phrase(" 니트로푸란", new Font(objBaseFont_dotum, 10)));
+//		            cell = new PdfPCell(new Phrase(" 니트로푸란", new Font(objBaseFont_dotum, 10)));
 		            cell.setHorizontalAlignment(Element.ALIGN_LEFT); cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		            mid_table.addCell(cell);
 		            mid_table.addCell(new Paragraph("불검출", isChkDisp ? new Font(objBaseFont_dotum, 7) : new Font(objBaseFont_dotum, 10)));
@@ -386,7 +464,7 @@ public class ItextPdfDown_All {
 		            		){
 		            	mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
 		            }else{
-		            	
+
 		            	if(!"".equals(data.getString("니트로퓨란"))){
 		            		니트로푸란 = event.parseDouble_method(data.getString("니트로퓨란")) > 0 ? 1 : 0;
 				            if(isChkDisp){
@@ -407,6 +485,8 @@ public class ItextPdfDown_All {
 		            		mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
 		            	}
 		            }
+		            */
+                    // end 2023.07.12. botbinoo. 양식 변경
 		            
 		            
 		            mid_table.addCell(new Paragraph("2", new Font(objBaseFont_dotum, 10)));
@@ -1294,7 +1374,7 @@ public class ItextPdfDown_All {
 	 	       			|| 클로람페니콜 == 1
 	 	       			|| 스트렙토마이신 == 1
 	 	       			|| 시미아졸 == 1
-	 	       			|| 니트로푸란 == 1
+//	 	       			|| 니트로푸란 == 1
 	 	       			|| 옥시테트라싸이클린 == 1
 	 	       			|| 코마포스 == 1
 	 	       			|| 설폰아마이드 == 1
@@ -1330,7 +1410,7 @@ public class ItextPdfDown_All {
 		   			if(클로람페니콜 == 1
 						|| 스트렙토마이신 == 1
 						|| 시미아졸 == 1
-						|| 니트로푸란 == 1
+//						|| 니트로푸란 == 1
 						|| 옥시테트라싸이클린 == 1
 						|| 코마포스 == 1
 						|| 설폰아마이드 == 1
@@ -1399,18 +1479,37 @@ public class ItextPdfDown_All {
 	 	            sf_4.setHorizontalAlignment(Element.ALIGN_CENTER); sf_4.setFixedHeight(22); sf_4.setColspan(2);
 	 	            sf_5.setHorizontalAlignment(Element.ALIGN_LEFT); sf_5.setFixedHeight(22); sf_5.setColspan(2);
 	 	            sf_6.setHorizontalAlignment(Element.ALIGN_CENTER); sf_6.setFixedHeight(22); sf_6.setColspan(6);
-	 	            
-	 	            sf_3.setBackgroundColor(new BaseColor(208,234,237));
-	 	            sf_6.setBackgroundColor(new BaseColor(208,234,237));
-	 	            
-	 	            mid_table.addCell(sf_1);
+
+	                // 2023.07.12. botbinoo. 양식 변경
+//	 	            sf_3.setBackgroundColor(new BaseColor(208,234,237));
+//	 	            sf_6.setBackgroundColor(new BaseColor(208,234,237));
+	                   sf_3.setBackgroundColor(tableBaseColor);
+	                   sf_6.setBackgroundColor(tableBaseColor);
+                    // end 2023.07.12. botbinoo. 양식 변경
+
+	                // 2023.07.12. botbinoo. 양식 변경
+	 	            /*mid_table.addCell(sf_1);
 	 	            mid_table.addCell(sf_2);
 	 	            mid_table.addCell(sf_3);
 	 	            mid_table.addCell(sf_4);
 	 	            mid_table.addCell(sf_5);
 	 	            mid_table.addCell(sf_6);
+	 	            */
+	 	            if(!PdfDocumentWrite.isReferToDoc(prdNm)) {
+	 	                // 참고용 문서가 아닌 경우에만 종합 결과, 등급 판정 row 추가
+	                    mid_table.addCell(sf_1);
+	                    mid_table.addCell(sf_2);
+	                    mid_table.addCell(sf_3);
+	                    mid_table.addCell(sf_4);
+                    } else {
+                        preface.add(Chunk.NEWLINE);
+                    }
+                    mid_table.addCell(sf_5);
+                    mid_table.addCell(sf_6);
+    	 	        // end 2023.07.12. botbinoo. 양식 변경
 
 	 	            preface.add(mid_table);
+	                preface.add(Chunk.NEWLINE);
 	 	            
 	            }else if(certiType == AdminCertiDao.CERTI_TYPE_HAN_1 || certiType == AdminCertiDao.CERTI_TYPE_DEFAULT){
 
@@ -1487,6 +1586,8 @@ public class ItextPdfDown_All {
 		            }
 
 		            // 니트로푸란
+                    // 2023.07.12. botbinoo. 양식 변경
+		            /*
 		            mid_table.addCell(new Paragraph("14", new Font(objBaseFont_dotum, 10)));
 		            cell = new PdfPCell(new Phrase(" 니트로푸란", new Font(objBaseFont_dotum, 10)));
 		            cell.setHorizontalAlignment(Element.ALIGN_LEFT); cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -1519,6 +1620,44 @@ public class ItextPdfDown_All {
 		            		mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
 		            	}
 		            }
+		            */
+                    // end 2023.07.12. botbinoo. 양식 변경
+                    // 스트렙토마이신
+                    // 2023.07.12. botbinoo. 양식 변경
+//                    mid_table.addCell(new Paragraph("15", new Font(objBaseFont_dotum, 10)));
+                    mid_table.addCell(new Paragraph("14", new Font(objBaseFont_dotum, 10)));
+                    // end 2023.07.12. botbinoo. 양식 변경
+                    cell = new PdfPCell(new Phrase(" 스트렙토마이신", new Font(objBaseFont_dotum, 10)));
+                    cell.setHorizontalAlignment(Element.ALIGN_LEFT); cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                    mid_table.addCell(cell);
+                    mid_table.addCell(new Paragraph("0.10ppm이하", isChkDisp ? new Font(objBaseFont_dotum, 7) : new Font(objBaseFont_dotum, 10)));
+                    if("일반".equals(prdNm)
+                            || "일반+탄소".equals(prdNm)
+                            || "탄소".equals(prdNm)
+                            ){
+                        mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
+                    }else{
+                        
+                        
+                        if(!"".equals(data.getString("스트렙토마이신"))){
+                            스트렙토마이신 = event.parseDouble_method(data.getString("스트렙토마이신")) > 100 ? 1 : 0;
+                            if(isChkDisp){
+                                if(event.parseDouble_method(data.getString("스트렙토마이신")) > 100){
+                                    mid_table.addCell(new Paragraph("검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("스트렙토마이신"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
+                                }else{
+                                    mid_table.addCell(new Paragraph("불검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("스트렙토마이신"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
+                                }
+                            }else{
+                                if(event.parseDouble_method(data.getString("스트렙토마이신")) > 100){
+                                    mid_table.addCell(new Paragraph("검출", new Font(objBaseFont_dotum, 10)));
+                                }else{
+                                    mid_table.addCell(new Paragraph("불검출", new Font(objBaseFont_dotum, 10)));
+                                }
+                            }
+                        }else{
+                            mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
+                        }
+                    }
 		            
 		            // 물불용물
 		            mid_table.addCell(new Paragraph("3", new Font(objBaseFont_dotum, 10)));
@@ -1548,40 +1687,6 @@ public class ItextPdfDown_All {
 		            		mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
 		            	}
 		            }
-
-		            // 스트렙토마이신
-		            mid_table.addCell(new Paragraph("15", new Font(objBaseFont_dotum, 10)));
-		            cell = new PdfPCell(new Phrase(" 스트렙토마이신", new Font(objBaseFont_dotum, 10)));
-		            cell.setHorizontalAlignment(Element.ALIGN_LEFT); cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-		            mid_table.addCell(cell);
-		            mid_table.addCell(new Paragraph("0.10ppm이하", isChkDisp ? new Font(objBaseFont_dotum, 7) : new Font(objBaseFont_dotum, 10)));
-		            if("일반".equals(prdNm)
-		            		|| "일반+탄소".equals(prdNm)
-		            		|| "탄소".equals(prdNm)
-		            		){
-		            	mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
-		            }else{
-		            	
-		            	
-		            	if(!"".equals(data.getString("스트렙토마이신"))){
-		            		스트렙토마이신 = event.parseDouble_method(data.getString("스트렙토마이신")) > 100 ? 1 : 0;
-				            if(isChkDisp){
-					            if(event.parseDouble_method(data.getString("스트렙토마이신")) > 100){
-					            	mid_table.addCell(new Paragraph("검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("스트렙토마이신"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
-					            }else{
-					            	mid_table.addCell(new Paragraph("불검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("스트렙토마이신"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
-					            }
-				            }else{
-				            	if(event.parseDouble_method(data.getString("스트렙토마이신")) > 100){
-				            		mid_table.addCell(new Paragraph("검출", new Font(objBaseFont_dotum, 10)));
-					            }else{
-					            	mid_table.addCell(new Paragraph("불검출", new Font(objBaseFont_dotum, 10)));
-					            }
-				            }
-		            	}else{
-		            		mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
-		            	}
-		            }
 		            
 		            //산도
 		            mid_table.addCell(new Paragraph("4", new Font(objBaseFont_dotum, 10)));
@@ -1604,7 +1709,10 @@ public class ItextPdfDown_All {
 		            }
 
 		            // 옥시테트라싸이클린
-		            mid_table.addCell(new Paragraph("16", new Font(objBaseFont_dotum, 10)));
+                    // 2023.07.12. botbinoo. 양식 변경
+//                    mid_table.addCell(new Paragraph("16", new Font(objBaseFont_dotum, 10)));
+                    mid_table.addCell(new Paragraph("15", new Font(objBaseFont_dotum, 10)));
+                    // end 2023.07.12. botbinoo. 양식 변경
 		            cell = new PdfPCell(new Phrase(" 옥시테트라싸이클린", new Font(objBaseFont_dotum, 10)));
 		            cell.setHorizontalAlignment(Element.ALIGN_LEFT); cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		            mid_table.addCell(cell);
@@ -1670,7 +1778,10 @@ public class ItextPdfDown_All {
 		            }
 
 		            // 클로람페니콜
-		            mid_table.addCell(new Paragraph("17", new Font(objBaseFont_dotum, 10)));
+                    // 2023.07.12. botbinoo. 양식 변경
+//                    mid_table.addCell(new Paragraph("17", new Font(objBaseFont_dotum, 10)));
+                    mid_table.addCell(new Paragraph("16", new Font(objBaseFont_dotum, 10)));
+                    // end 2023.07.12. botbinoo. 양식 변경
 		            cell = new PdfPCell(new Phrase(" 클로람페니콜", new Font(objBaseFont_dotum, 10)));
 		            cell.setHorizontalAlignment(Element.ALIGN_LEFT); cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		            mid_table.addCell(cell);
@@ -1734,7 +1845,10 @@ public class ItextPdfDown_All {
 		            }
 
 		            //테트라싸이클린
-		            mid_table.addCell(new Paragraph("18", new Font(objBaseFont_dotum, 10)));
+                    // 2023.07.12. botbinoo. 양식 변경
+//                    mid_table.addCell(new Paragraph("18", new Font(objBaseFont_dotum, 10)));
+                    mid_table.addCell(new Paragraph("17", new Font(objBaseFont_dotum, 10)));
+                    // end 2023.07.12. botbinoo. 양식 변경
 		            cell = new PdfPCell(new Phrase(" 테트라싸이클린", new Font(objBaseFont_dotum, 10)));
 		            cell.setHorizontalAlignment(Element.ALIGN_LEFT); cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		            mid_table.addCell(cell);
@@ -1787,7 +1901,10 @@ public class ItextPdfDown_All {
 		            }
 
 		            //시미아졸
-		            mid_table.addCell(new Paragraph("19", new Font(objBaseFont_dotum, 10)));
+                    // 2023.07.12. botbinoo. 양식 변경
+//                    mid_table.addCell(new Paragraph("19", new Font(objBaseFont_dotum, 10)));
+                    mid_table.addCell(new Paragraph("18", new Font(objBaseFont_dotum, 10)));
+                    // end 2023.07.12. botbinoo. 양식 변경
 		            cell = new PdfPCell(new Phrase(" 시미아졸", new Font(objBaseFont_dotum, 10)));
 		            cell.setHorizontalAlignment(Element.ALIGN_LEFT); cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		            mid_table.addCell(cell);
@@ -1841,7 +1958,10 @@ public class ItextPdfDown_All {
 		            }
 
 		            // 브로모프로필레이트
-		            mid_table.addCell(new Paragraph("20", new Font(objBaseFont_dotum, 10)));
+                    // 2023.07.12. botbinoo. 양식 변경
+//                    mid_table.addCell(new Paragraph("20", new Font(objBaseFont_dotum, 10)));
+                    mid_table.addCell(new Paragraph("19", new Font(objBaseFont_dotum, 10)));
+                    // end 2023.07.12. botbinoo. 양식 변경
 		            cell = new PdfPCell(new Phrase(" 브로모프로필레이트", new Font(objBaseFont_dotum, 10)));
 		            cell.setHorizontalAlignment(Element.ALIGN_LEFT); cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		            mid_table.addCell(cell);
@@ -1894,7 +2014,10 @@ public class ItextPdfDown_All {
 		            }
 
 		            // 아미트라즈
-		            mid_table.addCell(new Paragraph("21", new Font(objBaseFont_dotum, 10)));
+                    // 2023.07.12. botbinoo. 양식 변경
+//                    mid_table.addCell(new Paragraph("21", new Font(objBaseFont_dotum, 10)));
+                    mid_table.addCell(new Paragraph("20", new Font(objBaseFont_dotum, 10)));
+                    // end 2023.07.12. botbinoo. 양식 변경
 		            cell = new PdfPCell(new Phrase(" 아미트라즈", new Font(objBaseFont_dotum, 10)));
 		            cell.setHorizontalAlignment(Element.ALIGN_LEFT); cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		            mid_table.addCell(cell);
@@ -1947,7 +2070,10 @@ public class ItextPdfDown_All {
 		            }
 
 		            // 코마포스
-		            mid_table.addCell(new Paragraph("22", new Font(objBaseFont_dotum, 10)));
+                    // 2023.07.12. botbinoo. 양식 변경
+//                    mid_table.addCell(new Paragraph("22", new Font(objBaseFont_dotum, 10)));
+                    mid_table.addCell(new Paragraph("21", new Font(objBaseFont_dotum, 10)));
+                    // end 2023.07.12. botbinoo. 양식 변경
 		            cell = new PdfPCell(new Phrase(" 코마포스", new Font(objBaseFont_dotum, 10)));
 		            cell.setHorizontalAlignment(Element.ALIGN_LEFT); cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		            mid_table.addCell(cell);
@@ -2002,7 +2128,10 @@ public class ItextPdfDown_All {
 		            }
 
 		            // 폴루메쓰린
-		            mid_table.addCell(new Paragraph("23", new Font(objBaseFont_dotum, 10)));
+                    // 2023.07.12. botbinoo. 양식 변경
+//                    mid_table.addCell(new Paragraph("23", new Font(objBaseFont_dotum, 10)));
+                    mid_table.addCell(new Paragraph("22", new Font(objBaseFont_dotum, 10)));
+                    // end 2023.07.12. botbinoo. 양식 변경
 		            cell = new PdfPCell(new Phrase(" 플루메쓰린", new Font(objBaseFont_dotum, 10)));
 		            cell.setHorizontalAlignment(Element.ALIGN_LEFT); cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		            mid_table.addCell(cell);
@@ -2054,7 +2183,10 @@ public class ItextPdfDown_All {
 		            }
 
 		            // 플루발리네이트
-		            mid_table.addCell(new Paragraph("24", new Font(objBaseFont_dotum, 10)));
+                    // 2023.07.12. botbinoo. 양식 변경
+//                    mid_table.addCell(new Paragraph("24", new Font(objBaseFont_dotum, 10)));
+                    mid_table.addCell(new Paragraph("23", new Font(objBaseFont_dotum, 10)));
+                    // end 2023.07.12. botbinoo. 양식 변경
 		            cell = new PdfPCell(new Phrase(" 플루발리네이트", new Font(objBaseFont_dotum, 10)));
 		            cell.setHorizontalAlignment(Element.ALIGN_LEFT); cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		            mid_table.addCell(cell);
@@ -2084,40 +2216,77 @@ public class ItextPdfDown_All {
 		            		mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
 		            	}
 		            }
+
+                    // 그레이아노톡신Ⅲ
+                    // 2023.07.12. botbinoo. 양식 변경
+		            /*
+		             * 
+                    Paragraph afterCell1 = new Paragraph("24", new Font(objBaseFont_dotum, 10));
+                    cell = new PdfPCell(new Phrase(" 그레이아노톡신Ⅲ", new Font(objBaseFont_dotum, 10)));
+                    cell.setHorizontalAlignment(Element.ALIGN_LEFT); cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                    PdfPCell afterCell2 = cell;
+                    Paragraph afterCell3 = new Paragraph("불검출", isChkDisp ? new Font(objBaseFont_dotum, 7) : new Font(objBaseFont_dotum, 10));
+                    Paragraph afterCell4 = null;
+                    
+                    if("일반".equals(prdNm)
+                            || "일반+탄소".equals(prdNm)
+                            || "탄소".equals(prdNm)
+                            ){
+                        afterCell4 = new Paragraph("-", new Font(objBaseFont_dotum, 10));
+                    }else{
+                        if(!"".equals(data.getString("그레이아노톡신"))){
+                            그레이아노톡신 = event.parseDouble_method(data.getString("그레이아노톡신")) > 0 ? 1 : 0;
+                            if(isChkDisp){
+                                if(event.parseDouble_method(data.getString("그레이아노톡신")) > 0){
+                                    afterCell4 = new Paragraph("검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("그레이아노톡신"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8));
+                                }else{
+                                    afterCell4 = new Paragraph("불검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("그레이아노톡신"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8));
+                                }
+                            }else{
+                                if(event.parseDouble_method(data.getString("그레이아노톡신")) > 0){
+                                    afterCell4 = new Paragraph("검출", new Font(objBaseFont_dotum, 10));
+                                }else{
+                                    afterCell4 = new Paragraph("불검출", new Font(objBaseFont_dotum, 10));
+                                }
+                            }
+                        }else{
+                            afterCell4 = new Paragraph("-", new Font(objBaseFont_dotum, 10));
+                        }
+                    }
+		             * */
+                    mid_table.addCell(new Paragraph("24", new Font(objBaseFont_dotum, 10)));
+                    cell = new PdfPCell(new Phrase(" 그레이아노톡신Ⅲ", new Font(objBaseFont_dotum, 10)));
+                    cell.setHorizontalAlignment(Element.ALIGN_LEFT); cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                    mid_table.addCell(cell);
+                    mid_table.addCell(new Paragraph("불검출", isChkDisp ? new Font(objBaseFont_dotum, 7) : new Font(objBaseFont_dotum, 10)));
+
+                    if("일반".equals(prdNm)
+                            || "일반+탄소".equals(prdNm)
+                            || "탄소".equals(prdNm)
+                            ){
+                        mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
+                    }else{
+                        if(!"".equals(data.getString("그레이아노톡신"))){
+                            그레이아노톡신 = event.parseDouble_method(data.getString("그레이아노톡신")) > 0 ? 1 : 0;
+                            if(isChkDisp){
+                                if(event.parseDouble_method(data.getString("그레이아노톡신")) > 0){
+                                    mid_table.addCell(new Paragraph("검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("그레이아노톡신"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
+                                }else{
+                                    mid_table.addCell(new Paragraph("불검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("그레이아노톡신"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
+                                }
+                            }else{
+                                if(event.parseDouble_method(data.getString("그레이아노톡신")) > 0){
+                                    mid_table.addCell(new Paragraph("검출", new Font(objBaseFont_dotum, 10)));
+                                }else{
+                                    mid_table.addCell(new Paragraph("불검출", new Font(objBaseFont_dotum, 10)));
+                                }
+                            }
+                        }else{
+                            mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
+                        }
+                    }
+                    // end 2023.07.12. botbinoo. 양식 변경
 		            
-		            Paragraph afterCell1 = new Paragraph("25", new Font(objBaseFont_dotum, 10));
-				    cell = new PdfPCell(new Phrase(" 그레이아노톡신Ⅲ", new Font(objBaseFont_dotum, 10)));
-		            cell.setHorizontalAlignment(Element.ALIGN_LEFT); cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-		            PdfPCell afterCell2 = cell;
-		            Paragraph afterCell3 = new Paragraph("불검출", isChkDisp ? new Font(objBaseFont_dotum, 7) : new Font(objBaseFont_dotum, 10));
-		            Paragraph afterCell4 = null;
-		            
-		            // 그레이아노톡신Ⅲ
-		            if("일반".equals(prdNm)
-		            		|| "일반+탄소".equals(prdNm)
-		            		|| "탄소".equals(prdNm)
-		            		){
-		            	afterCell4 = new Paragraph("-", new Font(objBaseFont_dotum, 10));
-		            }else{
-		            	if(!"".equals(data.getString("그레이아노톡신"))){
-		            		그레이아노톡신 = event.parseDouble_method(data.getString("그레이아노톡신")) > 0 ? 1 : 0;
-				            if(isChkDisp){
-					            if(event.parseDouble_method(data.getString("그레이아노톡신")) > 0){
-					            	afterCell4 = new Paragraph("검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("그레이아노톡신"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8));
-					            }else{
-					            	afterCell4 = new Paragraph("불검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("그레이아노톡신"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8));
-					            }
-				            }else{
-				            	if(event.parseDouble_method(data.getString("그레이아노톡신")) > 0){
-				            		afterCell4 = new Paragraph("검출", new Font(objBaseFont_dotum, 10));
-					            }else{
-					            	afterCell4 = new Paragraph("불검출", new Font(objBaseFont_dotum, 10));
-					            }
-				            }
-		            	}else{
-		            		afterCell4 = new Paragraph("-", new Font(objBaseFont_dotum, 10));
-		            	}
-		            }
 		            
 		            if( 성상 == 1
 	 	       			|| 수분 == 1
@@ -2133,7 +2302,7 @@ public class ItextPdfDown_All {
 	 	       			|| 클로람페니콜 == 1
 	 	       			|| 스트렙토마이신 == 1
 	 	       			|| 시미아졸 == 1
-	 	       			|| 니트로푸란 == 1
+//	 	       			|| 니트로푸란 == 1
 	 	       			|| 옥시테트라싸이클린 == 1
 	 	       			|| 코마포스 == 1
 	 	       			|| 테트라싸이클린 == 1
@@ -2164,7 +2333,7 @@ public class ItextPdfDown_All {
 		   			if(클로람페니콜 == 1
 						|| 스트렙토마이신 == 1
 						|| 시미아졸 == 1
-						|| 니트로푸란 == 1
+//						|| 니트로푸란 == 1
 						|| 옥시테트라싸이클린 == 1
 						|| 코마포스 == 1
 						|| 테트라싸이클린 == 1
@@ -2228,22 +2397,46 @@ public class ItextPdfDown_All {
 	 	            sf_3.setHorizontalAlignment(Element.ALIGN_LEFT); sf_3.setVerticalAlignment(Element.ALIGN_MIDDLE); sf_3.setFixedHeight(22); sf_3.setColspan(2);
 	 	            sf_4.setHorizontalAlignment(Element.ALIGN_CENTER); sf_4.setVerticalAlignment(Element.ALIGN_MIDDLE); sf_4.setFixedHeight(22); sf_4.setColspan(성상 == 1 ? 5 : 6);
 
-	 	            sf_5.setBackgroundColor(new BaseColor(208,234,237));
-	 	            sf_1.setBackgroundColor(new BaseColor(208,234,237));
-	 	            sf_3.setBackgroundColor(new BaseColor(208,234,237));
+                 // 2023.07.12. botbinoo. 양식 변경
+                    sf_6.setColspan(6);
+                    sf_2.setColspan(6);
+                    sf_4.setColspan(6);
+                    
+//	 	            sf_5.setBackgroundColor(new BaseColor(208,234,237));
+//	 	            sf_1.setBackgroundColor(new BaseColor(208,234,237));
+//	 	            sf_3.setBackgroundColor(new BaseColor(208,234,237));
+	 	            sf_5.setBackgroundColor(tableBaseColor);
+    	 	        sf_1.setBackgroundColor(tableBaseColor);
+    	 	        sf_3.setBackgroundColor(tableBaseColor);
 
-	 	            mid_table.addCell(sf_5);
-	 	            mid_table.addCell(sf_6);
-	 	            
-		            mid_table.addCell(afterCell1);
-		            mid_table.addCell(afterCell2);
-		            mid_table.addCell(afterCell3);
-		            mid_table.addCell(afterCell4);
-		            
-	 	            mid_table.addCell(sf_1);
-	 	            mid_table.addCell(sf_2);
-	 	            mid_table.addCell(sf_3);
-	 	            mid_table.addCell(sf_4);
+                    /*
+                    mid_table.addCell(sf_5);
+                    mid_table.addCell(sf_6);
+                    
+                    mid_table.addCell(afterCell1);
+                    mid_table.addCell(afterCell2);
+                    mid_table.addCell(afterCell3);
+                    mid_table.addCell(afterCell4);
+                    
+                    mid_table.addCell(sf_1);
+                    mid_table.addCell(sf_2);
+                    mid_table.addCell(sf_3);
+                    mid_table.addCell(sf_4);
+                    */
+    	 	        
+                    mid_table.addCell(sf_5);
+                    mid_table.addCell(sf_6);
+                    
+                    if(!PdfDocumentWrite.isReferToDoc(prdNm)) {
+                        // 참고용 문서가 아닌 경우에만 종합 결과, 등급 판정 row 추가
+                        mid_table.addCell(sf_1);
+                        mid_table.addCell(sf_2);
+                        mid_table.addCell(sf_3);
+                        mid_table.addCell(sf_4);
+                    } else {
+                        preface.add(Chunk.NEWLINE);
+                    }
+                    // end 2023.07.12. botbinoo. 양식 변경
 	 	            
 	 	            if(성상 == 1) {
                         // 2023.07.06. 부적합시 해당 도장 삭제
@@ -2257,6 +2450,7 @@ public class ItextPdfDown_All {
 	 	            }
 
 	 	            preface.add(mid_table);
+	                preface.add(Chunk.NEWLINE);
 	            }
 
  	            
@@ -2278,7 +2472,10 @@ public class ItextPdfDown_All {
 	            if(certiType == AdminCertiDao.CERTI_TYPE_HAN_1){
 	            	end_footer_1.setSpacingBefore(10);
 	            }
-	            end_footer_1.setSpacingAfter(10);
+                // 2023.07.12. botbinoo. 양식 변경
+//              end_footer_1.setSpacingAfter(10);
+              end_footer_1.setSpacingAfter(15);
+              // end 2023.07.12. botbinoo. 양식 변경
 	            end_footer_day.setAlignment(Paragraph.ALIGN_CENTER);
 	            end_footer_last.setAlignment(Paragraph.ALIGN_CENTER);
 	            
