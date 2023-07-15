@@ -446,7 +446,7 @@ public class AdminCertiAction extends BaseUserAction {
 	                preface.add(mid_footer);
 	                */
 	                if(PdfDocumentWrite.isReferToDoc(prdNm)) {
-	                    Paragraph mid_footer_1 = new Paragraph("      ·이 통지서는 의뢰자가 제시한 시료에 한정된 결과로서 전체 제품에 대한 품질을 보증하지는 않습니다. ", new Font(objBaseFont_newgulim, 10, Font.BOLD));
+	                    Paragraph mid_footer_1 = new Paragraph("      ·이 통지서는 의뢰자가 제시한 시료에 한정된 결과로서 전체 제품에 대한 품질을 보증하지는 않습니다. ", new Font(objBaseFont_newgulim, 11, Font.BOLD));
 	                    Paragraph mid_footer_2 = new Paragraph("      ·이 통지서는 홍보 선전 광고 및 소송용으로 사용될 수 없으며 용도 이외의 사용을 금합니다. ", new Font(objBaseFont_newgulim, 10));
 	                    Paragraph mid_footer_3 = new Paragraph("      ·이 통지서의 일부만을 발췌 또는 수정하여 사용할 수 없습니다. ", new Font(objBaseFont_newgulim, 10));
 	                    
@@ -460,13 +460,15 @@ public class AdminCertiAction extends BaseUserAction {
 	                    mid_footer_4.setAlignment(Paragraph.ALIGN_LEFT);
 	                    mid_footer_5.setAlignment(Paragraph.ALIGN_LEFT);
 	                    mid_footer.setAlignment(Paragraph.ALIGN_LEFT);
-	                    
-	                    preface.add(mid_footer_1);
+
+                        preface.add(mid_footer_1);
+                        preface.add(new Paragraph("                              ", new Font(objBaseFont_newgulim, 6)));
 	                    preface.add(mid_footer_2);
 	                    preface.add(mid_footer_3);
 	                    preface.add(mid_footer_4);
 	                    preface.add(mid_footer_5);
 	                    preface.add(mid_footer);
+	                    preface.add(new Paragraph("                              ", new Font(objBaseFont_newgulim, 16)));
 	                } else {
 
 	                    Paragraph mid_footer_2 = new Paragraph("      ·이 통지서는 홍보 선전 광고 및 소송용으로 사용될 수 없으며 납품 및 참고자료 이외의 사용을 금합니다. ", new Font(objBaseFont_newgulim, 10));
@@ -1841,26 +1843,6 @@ public class AdminCertiAction extends BaseUserAction {
 			            	}
 			            }
 			            
-			            //산도
-			            mid_table.addCell(new Paragraph("4", new Font(objBaseFont_dotum, 10)));
-			            cell = new PdfPCell(new Phrase(" 산도", new Font(objBaseFont_dotum, 10)));
-			            cell.setHorizontalAlignment(Element.ALIGN_LEFT); cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			            mid_table.addCell(cell);
-			            mid_table.addCell(new Paragraph("40.0meq/kg 이하", isChkDisp ? new Font(objBaseFont_dotum, 7) : new Font(objBaseFont_dotum, 9)));
-			            if("잔류".equals(prdNm)
-			            		|| "잔류+탄소".equals(prdNm)
-			            		|| "탄소".equals(prdNm)
-			            		){
-			            	mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
-			            }else{
-			            	산도 = "적합".equals(data.getString("sando")) ? 0 : 1;
-			            	if(!"".equals(data.getString("sando"))){
-			            		mid_table.addCell(new Paragraph(data.getString("sando"), isChkDisp ? new Font(objBaseFont_dotum, 8) : new Font(objBaseFont_dotum, 10)));
-			            	}else{
-			            		mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 8)));
-			            	}
-			            }
-
 			            // 옥시테트라싸이클린
                         // 2023.07.12. botbinoo. 양식 변경
 //                        mid_table.addCell(new Paragraph("16", new Font(objBaseFont_dotum, 10)));
@@ -1898,7 +1880,65 @@ public class AdminCertiAction extends BaseUserAction {
 			            		mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
 			            	}
 			            }
-			            
+
+                        //산도
+                        mid_table.addCell(new Paragraph("4", new Font(objBaseFont_dotum, 10)));
+                        cell = new PdfPCell(new Phrase(" 산도", new Font(objBaseFont_dotum, 10)));
+                        cell.setHorizontalAlignment(Element.ALIGN_LEFT); cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                        mid_table.addCell(cell);
+                        mid_table.addCell(new Paragraph("40.0meq/kg 이하", isChkDisp ? new Font(objBaseFont_dotum, 7) : new Font(objBaseFont_dotum, 9)));
+                        if("잔류".equals(prdNm)
+                                || "잔류+탄소".equals(prdNm)
+                                || "탄소".equals(prdNm)
+                                ){
+                            mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
+                        }else{
+                            산도 = "적합".equals(data.getString("sando")) ? 0 : 1;
+                            if(!"".equals(data.getString("sando"))){
+                                mid_table.addCell(new Paragraph(data.getString("sando"), isChkDisp ? new Font(objBaseFont_dotum, 8) : new Font(objBaseFont_dotum, 10)));
+                            }else{
+                                mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 8)));
+                            }
+                        }
+
+
+                        // 클로람페니콜
+                        // 2023.07.12. botbinoo. 양식 변경
+//                        mid_table.addCell(new Paragraph("17", new Font(objBaseFont_dotum, 10)));
+                        mid_table.addCell(new Paragraph("16", new Font(objBaseFont_dotum, 10)));
+                        // end 2023.07.12. botbinoo. 양식 변경
+                        cell = new PdfPCell(new Phrase(" 클로람페니콜", new Font(objBaseFont_dotum, 10)));
+                        cell.setHorizontalAlignment(Element.ALIGN_LEFT); cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                        mid_table.addCell(cell);
+                        mid_table.addCell(new Paragraph("불검출", isChkDisp ? new Font(objBaseFont_dotum, 7) : new Font(objBaseFont_dotum, 10)));
+                        
+                        //해당되는 시험항목 - 표기
+                        if("일반".equals(prdNm)
+                                || "일반+탄소".equals(prdNm)
+                                || "탄소".equals(prdNm)
+                                ){
+                            mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
+                        
+                        }else{
+                            if(!"".equals(data.getString("클로암페니콜"))){
+                                클로람페니콜 = event.parseDouble_method(data.getString("클로암페니콜")) > 0 ? 1 : 0;
+                                if(isChkDisp){
+                                    if(event.parseDouble_method(data.getString("클로암페니콜")) > 0){
+                                        mid_table.addCell(new Paragraph("검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("클로암페니콜"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
+                                    }else{
+                                        mid_table.addCell(new Paragraph("불검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("클로암페니콜"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
+                                    }
+                                }else{
+                                    if(event.parseDouble_method(data.getString("클로암페니콜")) > 0){
+                                        mid_table.addCell(new Paragraph("검출", new Font(objBaseFont_dotum, 10)));
+                                    }else{
+                                        mid_table.addCell(new Paragraph("불검출", new Font(objBaseFont_dotum, 10)));
+                                    }
+                                }
+                            }else{
+                                mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
+                            }
+                        }
 			            
 			            
 			            // 전화당
@@ -1930,44 +1970,42 @@ public class AdminCertiAction extends BaseUserAction {
 			            	}
 			            }
 
-			            // 클로람페니콜
+                        //테트라싸이클린
                         // 2023.07.12. botbinoo. 양식 변경
-//                        mid_table.addCell(new Paragraph("17", new Font(objBaseFont_dotum, 10)));
-                        mid_table.addCell(new Paragraph("16", new Font(objBaseFont_dotum, 10)));
+//                        mid_table.addCell(new Paragraph("18", new Font(objBaseFont_dotum, 10)));
+                        mid_table.addCell(new Paragraph("17", new Font(objBaseFont_dotum, 10)));
                         // end 2023.07.12. botbinoo. 양식 변경
-			            cell = new PdfPCell(new Phrase(" 클로람페니콜", new Font(objBaseFont_dotum, 10)));
-			            cell.setHorizontalAlignment(Element.ALIGN_LEFT); cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			            mid_table.addCell(cell);
-			            mid_table.addCell(new Paragraph("불검출", isChkDisp ? new Font(objBaseFont_dotum, 7) : new Font(objBaseFont_dotum, 10)));
-			            
-			            //해당되는 시험항목 - 표기
-			            if("일반".equals(prdNm)
-			            		|| "일반+탄소".equals(prdNm)
-			            		|| "탄소".equals(prdNm)
-			            		){
-			            	mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
-			            
-			            }else{
-			            	if(!"".equals(data.getString("클로암페니콜"))){
-			            		클로람페니콜 = event.parseDouble_method(data.getString("클로암페니콜")) > 0 ? 1 : 0;
-					            if(isChkDisp){
-						            if(event.parseDouble_method(data.getString("클로암페니콜")) > 0){
-						            	mid_table.addCell(new Paragraph("검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("클로암페니콜"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
-						            }else{
-						            	mid_table.addCell(new Paragraph("불검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("클로암페니콜"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
-						            }
-					            }else{
-					            	if(event.parseDouble_method(data.getString("클로암페니콜")) > 0){
-						            	mid_table.addCell(new Paragraph("검출", new Font(objBaseFont_dotum, 10)));
-						            }else{
-						            	mid_table.addCell(new Paragraph("불검출", new Font(objBaseFont_dotum, 10)));
-						            }
-					            }
-			            	}else{
-			            		mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
-			            	}
-			            }
-			            
+                        cell = new PdfPCell(new Phrase(" 테트라싸이클린", new Font(objBaseFont_dotum, 10)));
+                        cell.setHorizontalAlignment(Element.ALIGN_LEFT); cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                        mid_table.addCell(cell);
+                        mid_table.addCell(new Paragraph("0.03ppm이하", isChkDisp ? new Font(objBaseFont_dotum, 7) : new Font(objBaseFont_dotum, 10)));
+                        if("일반".equals(prdNm)
+                                || "일반+탄소".equals(prdNm)
+                                || "탄소".equals(prdNm)
+                                ){
+                            mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
+                        }else{
+                            if(!"".equals(data.getString("테트라사이클린"))){
+                                테트라싸이클린 = event.parseDouble_method(data.getString("테트라사이클린")) > 30 ? 1 : 0;
+                                if(isChkDisp){
+                                    if(event.parseDouble_method(data.getString("테트라사이클린")) > 30){
+                                        mid_table.addCell(new Paragraph("검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("테트라사이클린"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
+                                    }else{
+                                        mid_table.addCell(new Paragraph("불검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("테트라사이클린"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
+                                    }
+                                }else{
+                                    if(event.parseDouble_method(data.getString("테트라사이클린")) > 30){
+                                        mid_table.addCell(new Paragraph("검출", new Font(objBaseFont_dotum, 10)));
+                                    }else{
+                                        mid_table.addCell(new Paragraph("불검출", new Font(objBaseFont_dotum, 10)));
+                                    }
+                                }
+                            }else{
+                                mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
+                            }
+                        }
+                        
+                          
 			            
 			            // 자당
 			            mid_table.addCell(new Paragraph("6", new Font(objBaseFont_dotum, 10)));
@@ -1997,42 +2035,41 @@ public class AdminCertiAction extends BaseUserAction {
 			            	}
 			            }
 
-			            //테트라싸이클린
+                        //시미아졸
                         // 2023.07.12. botbinoo. 양식 변경
-//                        mid_table.addCell(new Paragraph("18", new Font(objBaseFont_dotum, 10)));
-                        mid_table.addCell(new Paragraph("17", new Font(objBaseFont_dotum, 10)));
+//                        mid_table.addCell(new Paragraph("19", new Font(objBaseFont_dotum, 10)));
+                        mid_table.addCell(new Paragraph("18", new Font(objBaseFont_dotum, 10)));
                         // end 2023.07.12. botbinoo. 양식 변경
-			            cell = new PdfPCell(new Phrase(" 테트라싸이클린", new Font(objBaseFont_dotum, 10)));
-			            cell.setHorizontalAlignment(Element.ALIGN_LEFT); cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			            mid_table.addCell(cell);
-			            mid_table.addCell(new Paragraph("0.03ppm이하", isChkDisp ? new Font(objBaseFont_dotum, 7) : new Font(objBaseFont_dotum, 10)));
-			            if("일반".equals(prdNm)
-			            		|| "일반+탄소".equals(prdNm)
-			            		|| "탄소".equals(prdNm)
-			            		){
-			            	mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
-			            }else{
-				            if(!"".equals(data.getString("테트라사이클린"))){
-				            	테트라싸이클린 = event.parseDouble_method(data.getString("테트라사이클린")) > 30 ? 1 : 0;
-					            if(isChkDisp){
-						            if(event.parseDouble_method(data.getString("테트라사이클린")) > 30){
-						            	mid_table.addCell(new Paragraph("검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("테트라사이클린"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
-						            }else{
-						            	mid_table.addCell(new Paragraph("불검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("테트라사이클린"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
-						            }
-					            }else{
-					            	if(event.parseDouble_method(data.getString("테트라사이클린")) > 30){
-						            	mid_table.addCell(new Paragraph("검출", new Font(objBaseFont_dotum, 10)));
-						            }else{
-						            	mid_table.addCell(new Paragraph("불검출", new Font(objBaseFont_dotum, 10)));
-						            }
-					            }
-				            }else{
-			            		mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
-			            	}
-			            }
-			            
-			            
+                        cell = new PdfPCell(new Phrase(" 시미아졸", new Font(objBaseFont_dotum, 10)));
+                        cell.setHorizontalAlignment(Element.ALIGN_LEFT); cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                        mid_table.addCell(cell);
+                        mid_table.addCell(new Paragraph("1.00ppm이하", isChkDisp ? new Font(objBaseFont_dotum, 7) : new Font(objBaseFont_dotum, 10)));
+                        if("일반".equals(prdNm)
+                                || "일반+탄소".equals(prdNm)
+                                || "탄소".equals(prdNm)
+                                ){
+                            mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
+                        }else{
+                            if(!"".equals(data.getString("시미아졸"))){
+                                시미아졸 = event.parseDouble_method(data.getString("시미아졸")) > 1000 ? 1 : 0;
+                                if(isChkDisp){
+                                    if(event.parseDouble_method(data.getString("시미아졸")) > 1000){
+                                        mid_table.addCell(new Paragraph("검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("시미아졸"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
+                                    }else{
+                                        mid_table.addCell(new Paragraph("불검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("시미아졸"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
+                                    }
+                                }else{
+                                    if(event.parseDouble_method(data.getString("시미아졸")) > 1000){
+                                        mid_table.addCell(new Paragraph("검출", new Font(objBaseFont_dotum, 10)));
+                                    }else{
+                                        mid_table.addCell(new Paragraph("불검출", new Font(objBaseFont_dotum, 10)));
+                                    }
+                                }
+                            }else{
+                                mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
+                            }
+                        }
+                        
 			            //당비율
 			            mid_table.addCell(new Paragraph("7", new Font(objBaseFont_dotum, 10)));
 			            cell = new PdfPCell(new Phrase(" 당비율", new Font(objBaseFont_dotum, 10)));
@@ -2053,41 +2090,41 @@ public class AdminCertiAction extends BaseUserAction {
 			            	}
 			            }
 
-			            //시미아졸
+                        // 브로모프로필레이트
                         // 2023.07.12. botbinoo. 양식 변경
-//                        mid_table.addCell(new Paragraph("19", new Font(objBaseFont_dotum, 10)));
-                        mid_table.addCell(new Paragraph("18", new Font(objBaseFont_dotum, 10)));
+//                        mid_table.addCell(new Paragraph("20", new Font(objBaseFont_dotum, 10)));
+                        mid_table.addCell(new Paragraph("19", new Font(objBaseFont_dotum, 10)));
                         // end 2023.07.12. botbinoo. 양식 변경
-			            cell = new PdfPCell(new Phrase(" 시미아졸", new Font(objBaseFont_dotum, 10)));
-			            cell.setHorizontalAlignment(Element.ALIGN_LEFT); cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			            mid_table.addCell(cell);
-			            mid_table.addCell(new Paragraph("1.00ppm이하", isChkDisp ? new Font(objBaseFont_dotum, 7) : new Font(objBaseFont_dotum, 10)));
-			            if("일반".equals(prdNm)
-			            		|| "일반+탄소".equals(prdNm)
-			            		|| "탄소".equals(prdNm)
-			            		){
-			            	mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
-			            }else{
-			            	if(!"".equals(data.getString("시미아졸"))){
-			            		시미아졸 = event.parseDouble_method(data.getString("시미아졸")) > 1000 ? 1 : 0;
-					            if(isChkDisp){
-						            if(event.parseDouble_method(data.getString("시미아졸")) > 1000){
-						            	mid_table.addCell(new Paragraph("검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("시미아졸"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
-						            }else{
-						            	mid_table.addCell(new Paragraph("불검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("시미아졸"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
-						            }
-					            }else{
-					            	if(event.parseDouble_method(data.getString("시미아졸")) > 1000){
-					            		mid_table.addCell(new Paragraph("검출", new Font(objBaseFont_dotum, 10)));
-						            }else{
-						            	mid_table.addCell(new Paragraph("불검출", new Font(objBaseFont_dotum, 10)));
-						            }
-					            }
-			            	}else{
-			            		mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
-			            	}
-			            }
-			            
+                        cell = new PdfPCell(new Phrase(" 브로모프로필레이트", new Font(objBaseFont_dotum, 10)));
+                        cell.setHorizontalAlignment(Element.ALIGN_LEFT); cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                        mid_table.addCell(cell);
+                        mid_table.addCell(new Paragraph("0.01ppm이하", isChkDisp ? new Font(objBaseFont_dotum, 7) : new Font(objBaseFont_dotum, 10)));
+                        if("일반".equals(prdNm)
+                                || "일반+탄소".equals(prdNm)
+                                || "탄소".equals(prdNm)
+                                ){
+                            mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
+                        }else{
+                            if(!"".equals(data.getString("브로모프로필레이트"))){
+                                브로모프로필레이트 = event.parseDouble_method(data.getString("브로모프로필레이트")) > 10 ? 1 : 0;
+                                if(isChkDisp){
+                                    if(event.parseDouble_method(data.getString("브로모프로필레이트")) > 10){
+                                        mid_table.addCell(new Paragraph("검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("브로모프로필레이트"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
+                                    }else{
+                                        mid_table.addCell(new Paragraph("불검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("브로모프로필레이트"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
+                                    }
+                                }else{
+                                    if(event.parseDouble_method(data.getString("브로모프로필레이트")) > 10){
+                                        mid_table.addCell(new Paragraph("검출", new Font(objBaseFont_dotum, 10)));
+                                    }else{
+                                        mid_table.addCell(new Paragraph("불검출", new Font(objBaseFont_dotum, 10)));
+                                    }
+                                }
+                            }else{
+                                mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
+                            }
+                        }
+                        
 			            
 			            // H.M.F
 			            mid_table.addCell(new Paragraph("8", new Font(objBaseFont_dotum, 10)));
@@ -2110,41 +2147,42 @@ public class AdminCertiAction extends BaseUserAction {
 			            	}
 			            }
 
-			            // 브로모프로필레이트
+                        // 아미트라즈
                         // 2023.07.12. botbinoo. 양식 변경
-//                        mid_table.addCell(new Paragraph("20", new Font(objBaseFont_dotum, 10)));
-                        mid_table.addCell(new Paragraph("19", new Font(objBaseFont_dotum, 10)));
+//                        mid_table.addCell(new Paragraph("21", new Font(objBaseFont_dotum, 10)));
+                        mid_table.addCell(new Paragraph("20", new Font(objBaseFont_dotum, 10)));
                         // end 2023.07.12. botbinoo. 양식 변경
-			            cell = new PdfPCell(new Phrase(" 브로모프로필레이트", new Font(objBaseFont_dotum, 10)));
-			            cell.setHorizontalAlignment(Element.ALIGN_LEFT); cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			            mid_table.addCell(cell);
-			            mid_table.addCell(new Paragraph("0.01ppm이하", isChkDisp ? new Font(objBaseFont_dotum, 7) : new Font(objBaseFont_dotum, 10)));
-			            if("일반".equals(prdNm)
-			            		|| "일반+탄소".equals(prdNm)
-			            		|| "탄소".equals(prdNm)
-			            		){
-			            	mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
-			            }else{
-			            	if(!"".equals(data.getString("브로모프로필레이트"))){
-			            		브로모프로필레이트 = event.parseDouble_method(data.getString("브로모프로필레이트")) > 10 ? 1 : 0;
-					            if(isChkDisp){
-						            if(event.parseDouble_method(data.getString("브로모프로필레이트")) > 10){
-						            	mid_table.addCell(new Paragraph("검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("브로모프로필레이트"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
-						            }else{
-						            	mid_table.addCell(new Paragraph("불검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("브로모프로필레이트"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
-						            }
-					            }else{
-					            	if(event.parseDouble_method(data.getString("브로모프로필레이트")) > 10){
-					            		mid_table.addCell(new Paragraph("검출", new Font(objBaseFont_dotum, 10)));
-						            }else{
-						            	mid_table.addCell(new Paragraph("불검출", new Font(objBaseFont_dotum, 10)));
-						            }
-					            }
-			            	}else{
-			            		mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
-			            	}
-			            }
-			            
+                        cell = new PdfPCell(new Phrase(" 아미트라즈", new Font(objBaseFont_dotum, 10)));
+                        cell.setHorizontalAlignment(Element.ALIGN_LEFT); cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                        mid_table.addCell(cell);
+                        mid_table.addCell(new Paragraph("0.20ppm이하", isChkDisp ? new Font(objBaseFont_dotum, 7) : new Font(objBaseFont_dotum, 10)));
+                        if("일반".equals(prdNm)
+                                || "일반+탄소".equals(prdNm)
+                                || "탄소".equals(prdNm)
+                                ){
+                            mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
+                        }else{
+                            if(!"".equals(data.getString("아미트라즈"))){
+                                아미트라즈 = event.parseDouble_method(data.getString("아미트라즈")) > 200 ? 1 : 0;
+                                if(isChkDisp){
+                                    if(event.parseDouble_method(data.getString("아미트라즈")) > 200){
+                                        mid_table.addCell(new Paragraph("검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("아미트라즈"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
+                                    }else{
+                                        mid_table.addCell(new Paragraph("불검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("아미트라즈"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
+                                    }
+                                }else{
+                                    if(event.parseDouble_method(data.getString("아미트라즈")) > 200){
+                                        mid_table.addCell(new Paragraph("검출", new Font(objBaseFont_dotum, 10)));
+                                    }else{
+                                        mid_table.addCell(new Paragraph("불검출", new Font(objBaseFont_dotum, 10)));
+                                    }
+                                }
+                            }else{
+                                mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
+                            }
+                        }
+                        
+                        
 			            
 			            // 타르색소
 			            mid_table.addCell(new Paragraph("9", new Font(objBaseFont_dotum, 10)));
@@ -2166,42 +2204,41 @@ public class AdminCertiAction extends BaseUserAction {
 			            	}
 			            }
 
-			            // 아미트라즈
+                        // 코마포스
                         // 2023.07.12. botbinoo. 양식 변경
-//                        mid_table.addCell(new Paragraph("21", new Font(objBaseFont_dotum, 10)));
-                        mid_table.addCell(new Paragraph("20", new Font(objBaseFont_dotum, 10)));
+//                        mid_table.addCell(new Paragraph("22", new Font(objBaseFont_dotum, 10)));
+                        mid_table.addCell(new Paragraph("21", new Font(objBaseFont_dotum, 10)));
                         // end 2023.07.12. botbinoo. 양식 변경
-			            cell = new PdfPCell(new Phrase(" 아미트라즈", new Font(objBaseFont_dotum, 10)));
-			            cell.setHorizontalAlignment(Element.ALIGN_LEFT); cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			            mid_table.addCell(cell);
-			            mid_table.addCell(new Paragraph("0.20ppm이하", isChkDisp ? new Font(objBaseFont_dotum, 7) : new Font(objBaseFont_dotum, 10)));
-			            if("일반".equals(prdNm)
-			            		|| "일반+탄소".equals(prdNm)
-			            		|| "탄소".equals(prdNm)
-			            		){
-			            	mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
-			            }else{
-			            	if(!"".equals(data.getString("아미트라즈"))){
-			            		아미트라즈 = event.parseDouble_method(data.getString("아미트라즈")) > 200 ? 1 : 0;
-					            if(isChkDisp){
-						            if(event.parseDouble_method(data.getString("아미트라즈")) > 200){
-						            	mid_table.addCell(new Paragraph("검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("아미트라즈"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
-						            }else{
-						            	mid_table.addCell(new Paragraph("불검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("아미트라즈"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
-						            }
-					            }else{
-					            	if(event.parseDouble_method(data.getString("아미트라즈")) > 200){
-						            	mid_table.addCell(new Paragraph("검출", new Font(objBaseFont_dotum, 10)));
-						            }else{
-						            	mid_table.addCell(new Paragraph("불검출", new Font(objBaseFont_dotum, 10)));
-						            }
-					            }
-			            	}else{
-			            		mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
-			            	}
-			            }
-			            
-			            
+                        cell = new PdfPCell(new Phrase(" 코마포스", new Font(objBaseFont_dotum, 10)));
+                        cell.setHorizontalAlignment(Element.ALIGN_LEFT); cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                        mid_table.addCell(cell);
+                        mid_table.addCell(new Paragraph("0.10ppm이하", isChkDisp ? new Font(objBaseFont_dotum, 7) : new Font(objBaseFont_dotum, 10)));
+                        if("일반".equals(prdNm)
+                                || "일반+탄소".equals(prdNm)
+                                || "탄소".equals(prdNm)
+                                ){
+                            mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
+                        }else{
+                            if(!"".equals(data.getString("쿠마포스"))){
+                                코마포스 = event.parseDouble_method(data.getString("쿠마포스")) > 100 ? 1 : 0;
+                                if(isChkDisp){
+                                    if(event.parseDouble_method(data.getString("쿠마포스")) > 100){
+                                        mid_table.addCell(new Paragraph("검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("쿠마포스"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
+                                    }else{
+                                        mid_table.addCell(new Paragraph("불검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("쿠마포스"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
+                                    }
+                                }else{
+                                    if(event.parseDouble_method(data.getString("쿠마포스")) > 100){
+                                        mid_table.addCell(new Paragraph("검출", new Font(objBaseFont_dotum, 10)));
+                                    }else{
+                                        mid_table.addCell(new Paragraph("불검출", new Font(objBaseFont_dotum, 10)));
+                                    }
+                                }
+                            }else{
+                                mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
+                            }
+                        }
+                        
 			            //사카린나트륨
 			            mid_table.addCell(new Paragraph("10", new Font(objBaseFont_dotum, 10)));
 			            cell = new PdfPCell(new Phrase(" 사카린나트륨", new Font(objBaseFont_dotum, 10)));
@@ -2222,41 +2259,41 @@ public class AdminCertiAction extends BaseUserAction {
 			            	}
 			            }
 
-			            // 코마포스
+                        // 폴루메쓰린
                         // 2023.07.12. botbinoo. 양식 변경
-//                        mid_table.addCell(new Paragraph("22", new Font(objBaseFont_dotum, 10)));
-                        mid_table.addCell(new Paragraph("21", new Font(objBaseFont_dotum, 10)));
+//                        mid_table.addCell(new Paragraph("23", new Font(objBaseFont_dotum, 10)));
+                        mid_table.addCell(new Paragraph("22", new Font(objBaseFont_dotum, 10)));
                         // end 2023.07.12. botbinoo. 양식 변경
-			            cell = new PdfPCell(new Phrase(" 코마포스", new Font(objBaseFont_dotum, 10)));
-			            cell.setHorizontalAlignment(Element.ALIGN_LEFT); cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			            mid_table.addCell(cell);
-			            mid_table.addCell(new Paragraph("0.10ppm이하", isChkDisp ? new Font(objBaseFont_dotum, 7) : new Font(objBaseFont_dotum, 10)));
-			            if("일반".equals(prdNm)
-			            		|| "일반+탄소".equals(prdNm)
-			            		|| "탄소".equals(prdNm)
-			            		){
-			            	mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
-			            }else{
-			            	if(!"".equals(data.getString("쿠마포스"))){
-			            		코마포스 = event.parseDouble_method(data.getString("쿠마포스")) > 100 ? 1 : 0;
-					            if(isChkDisp){
-						            if(event.parseDouble_method(data.getString("쿠마포스")) > 100){
-						            	mid_table.addCell(new Paragraph("검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("쿠마포스"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
-						            }else{
-						            	mid_table.addCell(new Paragraph("불검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("쿠마포스"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
-						            }
-					            }else{
-					            	if(event.parseDouble_method(data.getString("쿠마포스")) > 100){
-						            	mid_table.addCell(new Paragraph("검출", new Font(objBaseFont_dotum, 10)));
-						            }else{
-						            	mid_table.addCell(new Paragraph("불검출", new Font(objBaseFont_dotum, 10)));
-						            }
-					            }
-			            	}else{
-			            		mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
-			            	}
-			            }
-			            
+                        cell = new PdfPCell(new Phrase(" 플루메쓰린", new Font(objBaseFont_dotum, 10)));
+                        cell.setHorizontalAlignment(Element.ALIGN_LEFT); cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                        mid_table.addCell(cell);
+                        mid_table.addCell(new Paragraph("0.01ppm이하", isChkDisp ? new Font(objBaseFont_dotum, 7) : new Font(objBaseFont_dotum, 10)));
+                        if("일반".equals(prdNm)
+                                || "일반+탄소".equals(prdNm)
+                                || "탄소".equals(prdNm)
+                                ){
+                            mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
+                        }else{
+                            if(!"".equals(data.getString("플루메쓰린"))){
+                                플루메쓰린 =  event.parseDouble_method(data.getString("플루메쓰린")) > 10 ? 1 : 0;
+                                if(isChkDisp){
+                                    if(event.parseDouble_method(data.getString("플루메쓰린")) > 10){
+                                        mid_table.addCell(new Paragraph("검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("플루메쓰린"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
+                                    }else{
+                                        mid_table.addCell(new Paragraph("불검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("플루메쓰린"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
+                                    }
+                                }else{
+                                    if(event.parseDouble_method(data.getString("플루메쓰린")) > 10){
+                                        mid_table.addCell(new Paragraph("검출", new Font(objBaseFont_dotum, 10)));
+                                    }else{
+                                        mid_table.addCell(new Paragraph("불검출", new Font(objBaseFont_dotum, 10)));
+                                    }
+                                }
+                            }else{
+                                mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
+                            }
+                        }
+                        
 			            // 이성화당
 			            mid_table.addCell(new Paragraph("11", new Font(objBaseFont_dotum, 10)));
 			            cell = new PdfPCell(new Phrase(" 이성화당", new Font(objBaseFont_dotum, 10)));
@@ -2280,41 +2317,41 @@ public class AdminCertiAction extends BaseUserAction {
 			            	}
 			            }
 
-			            // 폴루메쓰린
+                        // 플루발리네이트
                         // 2023.07.12. botbinoo. 양식 변경
-//                        mid_table.addCell(new Paragraph("23", new Font(objBaseFont_dotum, 10)));
-                        mid_table.addCell(new Paragraph("22", new Font(objBaseFont_dotum, 10)));
+//                        mid_table.addCell(new Paragraph("24", new Font(objBaseFont_dotum, 10)));
+                        mid_table.addCell(new Paragraph("23", new Font(objBaseFont_dotum, 10)));
                         // end 2023.07.12. botbinoo. 양식 변경
-			            cell = new PdfPCell(new Phrase(" 플루메쓰린", new Font(objBaseFont_dotum, 10)));
-			            cell.setHorizontalAlignment(Element.ALIGN_LEFT); cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			            mid_table.addCell(cell);
-			            mid_table.addCell(new Paragraph("0.01ppm이하", isChkDisp ? new Font(objBaseFont_dotum, 7) : new Font(objBaseFont_dotum, 10)));
-			            if("일반".equals(prdNm)
-			            		|| "일반+탄소".equals(prdNm)
-			            		|| "탄소".equals(prdNm)
-			            		){
-			            	mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
-			            }else{
-			            	if(!"".equals(data.getString("플루메쓰린"))){
-			            		플루메쓰린 =  event.parseDouble_method(data.getString("플루메쓰린")) > 10 ? 1 : 0;
-					            if(isChkDisp){
-						            if(event.parseDouble_method(data.getString("플루메쓰린")) > 10){
-						            	mid_table.addCell(new Paragraph("검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("플루메쓰린"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
-						            }else{
-						            	mid_table.addCell(new Paragraph("불검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("플루메쓰린"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
-						            }
-					            }else{
-					            	if(event.parseDouble_method(data.getString("플루메쓰린")) > 10){
-						            	mid_table.addCell(new Paragraph("검출", new Font(objBaseFont_dotum, 10)));
-						            }else{
-						            	mid_table.addCell(new Paragraph("불검출", new Font(objBaseFont_dotum, 10)));
-						            }
-					            }
-			            	}else{
-			            		mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
-			            	}
-			            }
-			            
+                        cell = new PdfPCell(new Phrase(" 플루발리네이트", new Font(objBaseFont_dotum, 10)));
+                        cell.setHorizontalAlignment(Element.ALIGN_LEFT); cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                        mid_table.addCell(cell);
+                        mid_table.addCell(new Paragraph("0.05ppm이하", isChkDisp ? new Font(objBaseFont_dotum, 7) : new Font(objBaseFont_dotum, 10)));
+                        if("일반".equals(prdNm)
+                                || "일반+탄소".equals(prdNm)
+                                || "탄소".equals(prdNm)
+                                ){
+                            mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
+                        }else{
+                            if(!"".equals(data.getString("플루바리네이트"))){
+                                플루발리네이트 = event.parseDouble_method(data.getString("플루바리네이트")) > 50 ? 1 : 0;
+                                if(isChkDisp){
+                                    if(event.parseDouble_method(data.getString("플루바리네이트")) > 50){
+                                        mid_table.addCell(new Paragraph("검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("플루바리네이트"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
+                                    }else{
+                                        mid_table.addCell(new Paragraph("불검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("플루바리네이트"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
+                                    }
+                                }else{
+                                    if(event.parseDouble_method(data.getString("플루바리네이트")) > 50){
+                                        mid_table.addCell(new Paragraph("검출", new Font(objBaseFont_dotum, 10)));
+                                    }else{
+                                        mid_table.addCell(new Paragraph("불검출", new Font(objBaseFont_dotum, 10)));
+                                    }
+                                }
+                            }else{
+                                mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
+                            }
+                        }
+
 			            
 			            //탄소동위원소비
 			            mid_table.addCell(new Paragraph("12", new Font(objBaseFont_dotum, 10)));
@@ -2330,41 +2367,6 @@ public class AdminCertiAction extends BaseUserAction {
 			            	if(!"".equals(data.getString("c12"))){
 			            		탄소동위원소비 = 0;
 			            		mid_table.addCell(new Paragraph(data.getString("c12"), isChkDisp ? new Font(objBaseFont_dotum, 8) : new Font(objBaseFont_dotum, 10)));
-			            	}else{
-			            		mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
-			            	}
-			            }
-
-			            // 플루발리네이트
-                        // 2023.07.12. botbinoo. 양식 변경
-//                        mid_table.addCell(new Paragraph("24", new Font(objBaseFont_dotum, 10)));
-                        mid_table.addCell(new Paragraph("23", new Font(objBaseFont_dotum, 10)));
-                        // end 2023.07.12. botbinoo. 양식 변경
-			            cell = new PdfPCell(new Phrase(" 플루발리네이트", new Font(objBaseFont_dotum, 10)));
-			            cell.setHorizontalAlignment(Element.ALIGN_LEFT); cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			            mid_table.addCell(cell);
-			            mid_table.addCell(new Paragraph("0.05ppm이하", isChkDisp ? new Font(objBaseFont_dotum, 7) : new Font(objBaseFont_dotum, 10)));
-			            if("일반".equals(prdNm)
-			            		|| "일반+탄소".equals(prdNm)
-			            		|| "탄소".equals(prdNm)
-			            		){
-			            	mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
-			            }else{
-			            	if(!"".equals(data.getString("플루바리네이트"))){
-			            		플루발리네이트 = event.parseDouble_method(data.getString("플루바리네이트")) > 50 ? 1 : 0;
-					            if(isChkDisp){
-						            if(event.parseDouble_method(data.getString("플루바리네이트")) > 50){
-						            	mid_table.addCell(new Paragraph("검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("플루바리네이트"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
-						            }else{
-						            	mid_table.addCell(new Paragraph("불검출 ( "+TextFormatter.convNvl(format.format(Double.parseDouble(data.getString("플루바리네이트"))/1000), "0")+" )", new Font(objBaseFont_dotum, 8)));
-						            }
-					            }else{
-					            	if(event.parseDouble_method(data.getString("플루바리네이트")) > 50){
-						            	mid_table.addCell(new Paragraph("검출", new Font(objBaseFont_dotum, 10)));
-						            }else{
-						            	mid_table.addCell(new Paragraph("불검출", new Font(objBaseFont_dotum, 10)));
-						            }
-					            }
 			            	}else{
 			            		mid_table.addCell(new Paragraph("-", new Font(objBaseFont_dotum, 10)));
 			            	}
@@ -2584,7 +2586,7 @@ public class AdminCertiAction extends BaseUserAction {
 		                        mid_table.addCell(sf_3);
 		                        mid_table.addCell(sf_4);
 	                        } else {
-	                            preface.add(Chunk.NEWLINE);
+//	                            preface.add(Chunk.NEWLINE);
 	                        }
 		                    // end 2023.07.12. botbinoo. 양식 변경
 		 	            
